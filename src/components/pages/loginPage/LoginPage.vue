@@ -1,10 +1,9 @@
 <template>
 <div class="container">
     <div class="row align-items-center justify-content-center">
-        <div class="col-md-6">
-          <LoginForm/>
+        <div class="col-md-4">
+          <LoginForm :loginRef="loginHandle"/>
         </div>
-        <a href='#' @click="login">login</a>
     </div>
 </div>
 </template>
@@ -35,10 +34,11 @@ export default class LoginPage extends Vue {
 
   @UserStore.Action loginUser: any;
 
-  login() {
+  loginHandle(userAuth: {name: string, password: string}) {
+    debugger;
     console.log('login clicked');
-    const up = userProfiles.filter(item => item.name === 'janko' && item.password === 'janko');
-    if (up) {
+    const up = userProfiles.filter(item => item.name === userAuth.name && item.password === userAuth.password);
+    if (up && up.length > 0) {
       this.loginUser(up[0]);
     }
     // axios
