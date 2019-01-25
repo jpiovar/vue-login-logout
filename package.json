@@ -7,7 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "postinstall": "npm run build",
+    "start": "node server.js"
   },
   "dependencies": {
     "vue": "^2.5.21",
@@ -30,8 +32,10 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "express": "^4.16.4",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
+    "serve-static": "^1.13.2",
     "ts-jest": "^23.0.0",
     "typescript": "~3.1.1",
     "vue-template-compiler": "^2.5.21"
