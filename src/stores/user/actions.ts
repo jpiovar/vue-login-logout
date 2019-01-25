@@ -1,5 +1,5 @@
 import { ActionTree, ActionContext } from 'vuex';
-import RootState from '../types';
+import { RootState } from '../types';
 import { UserStore, UserProfile } from './user.types';
 
 const actions: ActionTree<UserStore, RootState> = {
