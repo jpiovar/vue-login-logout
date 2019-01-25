@@ -35,11 +35,10 @@ export default class LoginPage extends Vue {
   @UserStore.Action loginUser: any;
 
   loginHandle(userAuth: {name: string, password: string}) {
-    debugger;
     console.log('login clicked');
     const up = userProfiles.filter(item => item.name === userAuth.name && item.password === userAuth.password);
     if (up && up.length > 0) {
-      this.loginUser(up[0]);
+      this.loginUser({'id': up[0].id, 'name': up[0].name, 'email': up[0].email});
     }
     // axios
     //   .get('/src/assets/userData.json')

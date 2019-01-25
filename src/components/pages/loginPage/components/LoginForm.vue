@@ -10,7 +10,7 @@
       <label for="exampleInputPassword1">Password</label>
       <input type="password" v-model="passwordVal" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary" @click="loginForm">Login</button>
+    <button type="button" class="btn btn-primary" @click="loginForm">Login</button>
   </form>
 </div>
 </template>
@@ -33,7 +33,6 @@ export default class LoginForm extends Vue {
   passwordVal: string = '';
 
   loginForm() {
-    debugger;
     this.loginRef({'name': this.userNameVal, 'password': this.passwordVal});
   }
 }
