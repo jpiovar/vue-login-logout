@@ -3,12 +3,12 @@
   <form>
     <div class="form-group">
       <label for="userName">User name</label>
-      <input type="text" v-model="userNameVal" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
+      <input type="text" v-model="userNameVal" @keyup.enter="loginForm" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
       <!-- <small id="userNameHelp" class="form-text text-muted">Please use valid user name.</small> -->
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" v-model="passwordVal" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input type="password" v-model="passwordVal" @keyup.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary" @click.prevent="loginForm">Login</button>
   </form>
