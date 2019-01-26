@@ -10,11 +10,11 @@
       <label for="exampleInputPassword1">Password</label>
       <input type="password" v-model="passwordVal" @keydown.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary" @click.prevent="loginForm" @blur="setFocus">Login</button>
+    <button type="submit" class="btn btn-primary" @click.prevent="loginForm" @keydown.tab.prevent="setFocus">Login</button>
   </form>
   <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if='showAlert'>
     Please use valid credentials.
-    <button type="button" class="close" aria-label="Close" @click.prevent="hideAlertBanner">
+    <button type="button" class="close" ref="alertBtn" aria-label="Close" @click.prevent="hideAlertBanner" @keydown.tab.prevent="setFocusInput">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -53,12 +53,13 @@ export default class LoginForm extends Vue {
     (this.$refs.userName as HTMLFormElement).focus();
   }
   setFocus() {
-    debugger;
-    console.log('blur');
     if(!this.showAlert) {
-      console.log('blur showAlert');
       (this.$refs.userName as HTMLFormElement).focus();
     }
+    (this.$refs.alertBtn as HTMLFormElement).focus();
+  }
+  setFocusInput() {
+    (this.$refs.userName as HTMLFormElement).focus();
   }
 }
 </script>
