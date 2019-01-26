@@ -3,18 +3,18 @@
   <form>
     <div class="form-group">
       <label for="userName">User name</label>
-      <input type="text" v-model="userNameVal" @keyup.enter="loginForm" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
+      <input type="text" v-model="userNameVal" @keydown.enter="loginForm" ref="userName" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
       <!-- <small id="userNameHelp" class="form-text text-muted">Please use valid user name.</small> -->
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" v-model="passwordVal" @keyup.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <input type="password" v-model="passwordVal" @keydown.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary" @click.prevent="loginForm">Login</button>
+    <button type="submit" class="btn btn-primary" @click.prevent="loginForm" @blur="setFocus">Login</button>
   </form>
   <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if='showAlert'>
     Please use valid credentials.
-    <button type="button" class="close" aria-label="Close" @click="hideAlertBanner">
+    <button type="button" class="close" aria-label="Close" @click.prevent="hideAlertBanner">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -50,6 +50,15 @@ export default class LoginForm extends Vue {
   }
   hideAlertBanner() {
     this.showAlert = false;
+    (this.$refs.userName as HTMLFormElement).focus();
+  }
+  setFocus() {
+    debugger;
+    console.log('blur');
+    if(!this.showAlert) {
+      console.log('blur showAlert');
+      (this.$refs.userName as HTMLFormElement).focus();
+    }
   }
 }
 </script>
