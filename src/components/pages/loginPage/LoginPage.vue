@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row align-items-center justify-content-center">
         <div class="col-md-4">
-          <LoginForm :loginRef="loginHandle"/>
+          <LoginForm :loginRef="loginHandle" ref="loginForm"/>
         </div>
     </div>
 </div>
@@ -35,10 +35,14 @@ export default class LoginPage extends Vue {
   @UserStore.Action loginUser: any;
 
   loginHandle(userAuth: {name: string, password: string}) {
+    debugger;
     console.log('login clicked');
     const up = userProfiles.filter(item => item.name === userAuth.name && item.password === userAuth.password);
     if (up && up.length > 0) {
       this.loginUser({'id': up[0].id, 'name': up[0].name, 'email': up[0].email});
+    } else {
+      debugger;
+      (this.$refs.loginForm as HTMLFormElement).showAlertBannerAndReset();
     }
     // axios
     //   .get('/src/assets/userData.json')
