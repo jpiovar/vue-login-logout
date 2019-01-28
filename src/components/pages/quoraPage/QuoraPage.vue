@@ -1,11 +1,28 @@
 <template>
 <div class="container">
-    <div class="row align-items-center justify-content-center">
-        <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <p class="card-text text-left">
+              Bla bla bla aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+               aaaaaaaaaaaaaaaaaaaaa a bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbbbbbbb nnnnnnnnnnnnnn
+            </p>
+          </div>
         </div>
-        <a href='#' @click="logout">logout</a>
-        <p>{{ userProfile.name }}</p>
-        <p>{{ userProfile.email }}</p>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow p-3 mb-5 bg-white rounded">
+          <div class="card-body">
+            <h5 class="card-title">User Info</h5>
+            <p class="card-text text-left">
+              Name: {{ userProfile.name }}
+              <br/>Email: {{ userProfile.email }}
+            </p>
+            <a href="#" class="btn btn-primary" @click="logout">Logout</a>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 </template>
