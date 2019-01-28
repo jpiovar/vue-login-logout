@@ -1,22 +1,27 @@
 <template>
 <div class="login-form">
-  <form>
-    <div class="form-group">
-      <label for="userName">User name</label>
-      <input type="text" v-model="userNameVal" @keydown.enter="loginForm" ref="userName" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
-      <!-- <small id="userNameHelp" class="form-text text-muted">Please use valid user name.</small> -->
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <div class="card-body">
+      <h4 class="card-title text-center">Simple Quora Login</h4>
+      <form>
+        <div class="form-group">
+          <label for="userName">User name</label>
+          <input type="text" v-model="userNameVal" @keydown.enter="loginForm" ref="userName" class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="Enter user name">
+          <!-- <small id="userNameHelp" class="form-text text-muted">Please use valid user name.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" v-model="passwordVal" @keydown.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary" @click.prevent="loginForm" @keydown.tab.prevent="setFocus">Login</button>
+      </form>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if='showAlert'>
+        Please use valid credentials.
+        <button type="button" class="close" ref="alertBtn" aria-label="Close" @click.prevent="hideAlertBanner" @keydown.tab.prevent="setFocusInput">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" v-model="passwordVal" @keydown.enter="loginForm" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary" @click.prevent="loginForm" @keydown.tab.prevent="setFocus">Login</button>
-  </form>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if='showAlert'>
-    Please use valid credentials.
-    <button type="button" class="close" ref="alertBtn" aria-label="Close" @click.prevent="hideAlertBanner" @keydown.tab.prevent="setFocusInput">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
 </div>
 </template>
@@ -66,7 +71,6 @@ export default class LoginForm extends Vue {
 
 <style lang="scss" scoped>
 .login-form {
-    height: 400px;
     text-align: left;
     form {
       margin: 20px 0;
