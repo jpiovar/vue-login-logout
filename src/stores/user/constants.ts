@@ -7,4 +7,4 @@ export const USER_PROFILE: UserProfile = {
 };
 
 export const USER_STATUS_IN: UserStatus = 'loggedIn';
-export const USER_STATUS_OUT: UserStatus = '';
+export const USER_STATUS_OUT: UserStatus = 'initial';

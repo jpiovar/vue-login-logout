@@ -4,7 +4,7 @@ export interface UserProfile {
     email: string;
 }
 
-export type UserStatus = ''|'loggedIn';
+export type UserStatus = 'initial'|'loggedIn';
 
 export interface UserStore {
     userProfile: UserProfile;
