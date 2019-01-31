@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
+    <HelloWorld :msg="temp.id"/> -->
     <LoginPage v-if="applyLoginPage"/>
     <QuoraPage v-if="applyQuoraPage"/>
   </div>
@@ -20,7 +20,7 @@ const UserStore = namespace(USER);
 
 @Component({
   components: {
-    HelloWorld,
+    // HelloWorld,
     LoginPage,
     QuoraPage,
   },
@@ -33,6 +33,8 @@ export default class App extends Vue {
   userStatusIn = USER_STATUS_IN;
 
   userStatusOut = USER_STATUS_OUT;
+
+  // temp: Object = { id: "oooooo" };
 
   get applyLoginPage(): Boolean {
     return this.userStatus === this.userStatusInitial || this.userStatus === this.userStatusOut;

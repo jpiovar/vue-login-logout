@@ -2,26 +2,10 @@
 <div class="container">
     <div class="row">
       <div class="col-md-9">
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-          <div class="card-body">
-            <p class="card-text text-left">
-              Bla bla bla aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-               aaaaaaaaaaaaaaaaaaaaa a bbbbbbbbbbbb bbbbbbbbbbbb bbbbbbbbbbbbbbbbb nnnnnnnnnnnnnn
-            </p>
-          </div>
-        </div>
+        <quora-item v-for="(item, index) in quoraItems" :key="item.id" :index="index"/>
       </div>
       <div class="col-md-3">
-        <div class="card shadow p-3 mb-5 bg-white rounded">
-          <div class="card-body">
-            <h5 class="card-title">User Info</h5>
-            <p class="card-text text-left">
-              Name: {{ userProfile.name }}
-              <br/>Email: {{ userProfile.email }}
-            </p>
-            <a href="#" class="btn btn-primary" @click="logout">Logout</a>
-          </div>
-        </div>
+        <user-info :logoutHandler="logout" :userName="userProfile.name" :userEmail="userProfile.email"/>
       </div>
     </div>
 </div>
@@ -30,12 +14,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { USER } from '../../../stores/constants';
+import { USER, QUORA } from '../../../stores/constants';
+import QuoraItem from './components/QuoraItem.vue';
+import UserInfo from './components/UserInfo.vue';
 
 const UserStore = namespace(USER);
+const QuoraStore = namespace(QUORA);
 
 @Component({
-  components: {},
+  components: {
+    QuoraItem,
+    UserInfo,
+  },
   props: {
     msg: {
       required: false,
@@ -46,11 +36,11 @@ const UserStore = namespace(USER);
 export default class QuoraPage extends Vue {
   msg!: string;
 
-  userEmail: string = '';
-
   @UserStore.Action logoutUser: any;
 
   @UserStore.Getter userData: any;
+
+  @QuoraStore.Getter quoraItems: any;
 
   logout() {
     console.log('logout clicked');

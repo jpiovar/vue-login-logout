@@ -12,11 +12,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import axios, { AxiosResponse } from 'axios';
-import { USER } from '../../../stores/constants';
+import { USER, QUORA } from '../../../stores/constants';
 import LoginForm from './components/LoginForm.vue';
-import { userProfiles } from '../../../assets/data';
+import { userProfiles, quoraContent } from '../../../assets/data';
+import store from '@/store';
 
 const UserStore = namespace(USER);
+const QuoraStore = namespace(QUORA);
 
 @Component({
   components: {
@@ -34,12 +36,15 @@ export default class LoginPage extends Vue {
 
   @UserStore.Action loginUser: any;
 
+  @QuoraStore.Action storeQuoraData: any;
+
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');
     const up = userProfiles.filter(item => item.name === userAuth.name
       && item.password === userAuth.password);
     if (up && up.length > 0) {
       this.loginUser({ id: up[0].id, name: up[0].name, email: up[0].email });
+      this.storeQuoraData(quoraContent);
     } else {
       (this.$refs.loginForm as HTMLFormElement).showAlertBannerAndReset();
     }

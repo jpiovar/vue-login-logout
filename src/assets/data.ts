@@ -11,14 +11,46 @@ export const userProfiles = [{
 }];
 
 export const quoraContent = [{
-  qId: 'q1',
-  qAuthorId: 'j1',
+  id: 'q1',
+  authorId: 'j1',
   text: 'sense of life',
   anwers: [
     {
-      aId: 'a1',
-      aAuthorId: 'h1',
-      text: 'nobody knows sense of life',
+      id: 'a1',
+      authorId: 'h1',
+      text: 'nobody knows sense of life a',
+    },
+    {
+      id: 'a2',
+      authorId: 'j1',
+      text: 'nobody knows sense of life j',
+    },
+    {
+      id: 'a3',
+      authorId: 'h1',
+      text: 'nobody knows sense of life h',
+    },
+  ],
+},
+{
+  id: 'q2',
+  authorId: 'j1',
+  text: 'sense of life and nonsense of all',
+  anwers: [
+    {
+      id: 'a1',
+      authorId: 'h1',
+      text: 'nobody knows sense of life a',
+    },
+    {
+      id: 'a2',
+      authorId: 'j1',
+      text: 'nobody knows sense of life j',
+    },
+    {
+      id: 'a3',
+      authorId: 'h1',
+      text: 'nobody knows sense of life h',
     },
   ],
 }];

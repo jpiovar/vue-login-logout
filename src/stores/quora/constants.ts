@@ -11,4 +11,4 @@ export const QUORA_ITEMS_INITIAL: QuoraItem[] = [];
 
 export const QUORA_STATUS_INITIAL: QuoraStatus = 'initial';
 export const QUORA_STATUS_LOADING: QuoraStatus = 'loading';
-export const QUORA_STATUS_DONE: QuoraStatus = 'done';
+export const QUORA_STATUS_LOADED: QuoraStatus = 'loaded';
