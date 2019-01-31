@@ -3,9 +3,13 @@ import { RootState } from '../types';
 import { QuoraStore, QuoraItem } from './quora.types';
 
 const actions: ActionTree<QuoraStore, RootState> = {
-  setLoadedData({ commit }: ActionContext<QuoraStore, RootState>, data: QuoraItem) {
-    const { id } = data;
-    commit('loginUser', { id });
+  setQuoraData({ commit }: ActionContext<QuoraStore, RootState>, datas: QuoraItem[]) {
+    debugger;
+    // const { id } = datas;
+    // commit('loginUser', { id });
+  },
+  destroyQuoraData({ commit }: ActionContext<QuoraStore, RootState>, datas: QuoraItem[]) {
+    debugger;
   },
 };
 

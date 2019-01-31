@@ -10,7 +10,7 @@ export const userProfiles = [{
   password: 'hrasko',
 }];
 
-export const questions = [{
+export const quoraContent = [{
   qId: 'q1',
   qAuthorId: 'j1',
   text: 'sense of life',

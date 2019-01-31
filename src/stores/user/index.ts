@@ -4,13 +4,13 @@ import { RootState } from '../types';
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
-import { USER_PROFILE, USER_STATUS_OUT } from './constants';
+import { USER_DATA, USER_STATUS_INITIAL } from './constants';
 
 const namespaced = true;
 
 const state: UserStore = {
-  userProfile: USER_PROFILE,
-  userStatus: USER_STATUS_OUT,
+  userData: USER_DATA,
+  userStatus: USER_STATUS_INITIAL,
 };
 
 const user: Module<UserStore, RootState> = {

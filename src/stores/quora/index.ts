@@ -8,7 +8,7 @@ import { QUORA_ITEM, QUORA_STATUS_INITIAL } from './constants';
 
 const namespaced = true;
 
-const quoraItems:QuoraItem[] = [];
+const quoraItems: QuoraItem[] = [];
 
 const state: QuoraStore = {
   quoraItems,

@@ -1,9 +1,9 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
-import { UserStore, UserProfile } from './user.types';
+import { UserStore, UserData } from './user.types';
 
 const actions: ActionTree<UserStore, RootState> = {
-  loginUser({ commit }: ActionContext<UserStore, RootState>, data: UserProfile) {
+  loginUser({ commit }: ActionContext<UserStore, RootState>, data: UserData) {
     const { id, name, email } = data;
     commit('loginUser', { id, name, email });
   },

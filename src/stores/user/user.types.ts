@@ -1,12 +1,12 @@
-export interface UserProfile {
+export interface UserData {
     id: string;
     name: string;
     email: string;
 }
 
-export type UserStatus = 'initial'|'loggedIn';
+export type UserStatus = 'initial'|'loggedIn'|'loggedOut';
 
 export interface UserStore {
-    userProfile: UserProfile;
+    userData: UserData;
     userStatus: UserStatus;
 }

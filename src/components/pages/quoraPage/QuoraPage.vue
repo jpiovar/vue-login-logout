@@ -50,11 +50,7 @@ export default class QuoraPage extends Vue {
 
   @UserStore.Action logoutUser: any;
 
-  @UserStore.Getter userNameEmail: any;
-
-  created() {
-    const { name, email } = this.userNameEmail;
-  }
+  @UserStore.Getter userData: any;
 
   logout() {
     console.log('logout clicked');
@@ -62,7 +58,7 @@ export default class QuoraPage extends Vue {
   }
 
   get userProfile() {
-    const { name, email } = this.userNameEmail;
+    const { name, email } = this.userData;
     return { name, email };
   }
 }

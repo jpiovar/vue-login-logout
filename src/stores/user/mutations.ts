@@ -1,18 +1,18 @@
 import { MutationTree } from 'vuex';
-import { UserStore, UserProfile } from './user.types';
-import { USER_PROFILE, USER_STATUS_OUT, USER_STATUS_IN } from './constants';
+import { UserStore, UserData } from './user.types';
+import { USER_DATA, USER_STATUS_OUT, USER_STATUS_IN } from './constants';
 
 const mutations: MutationTree<UserStore> = {
-  loginUser(state: UserStore, data: UserProfile) {
+  loginUser(state: UserStore, data: UserData) {
     const newState = {
-      userProfile: data,
+      userData: data,
       userStatus: USER_STATUS_IN,
     };
     Object.assign(state, newState);
   },
   logoutUser(state: UserStore) {
     const newState = {
-      userProfile: USER_PROFILE,
+      userData: USER_DATA,
       userStatus: USER_STATUS_OUT,
     };
     Object.assign(state, newState);
