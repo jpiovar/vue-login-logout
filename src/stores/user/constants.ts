@@ -1,6 +1,6 @@
 import { UserData, UserStatus } from './user.types';
 
-export const USER_DATA: UserData = {
+export const USER_DATA_INITIAL: UserData = {
   id: '',
   name: '',
   email: '',

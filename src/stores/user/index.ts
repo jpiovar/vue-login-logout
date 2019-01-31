@@ -4,12 +4,12 @@ import { RootState } from '../types';
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
-import { USER_DATA, USER_STATUS_INITIAL } from './constants';
+import { USER_DATA_INITIAL, USER_STATUS_INITIAL } from './constants';
 
 const namespaced = true;
 
 const state: UserStore = {
-  userData: USER_DATA,
+  userData: USER_DATA_INITIAL,
   userStatus: USER_STATUS_INITIAL,
 };
 

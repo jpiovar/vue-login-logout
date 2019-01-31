@@ -8,7 +8,7 @@
           <label for="userName">User name</label>
           <input type="text"
             v-model="userNameVal"
-            @keydown.enter="loginForm"
+            @keydown.enter.prevent="loginForm"
             ref="userName" class="form-control" id="userName"
             aria-describedby="userNameHelp" placeholder="Enter user name">
         </div>
@@ -16,7 +16,7 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password"
             v-model="passwordVal"
-            @keydown.enter="loginForm"
+            @keydown.enter.prevent="loginForm"
             class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary"
