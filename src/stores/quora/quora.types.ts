@@ -11,7 +11,7 @@ export interface QuoraItem {
     answers: Answer[];
 }
 
-export type QuoraStatus = 'initial'|'loading'|'done';
+export type QuoraStatus = 'initial'|'loading'|'loaded';
 
 export interface QuoraStore {
     quoraItems: QuoraItem[];

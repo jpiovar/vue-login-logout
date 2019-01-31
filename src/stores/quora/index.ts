@@ -4,14 +4,12 @@ import { RootState } from '../types';
 import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
-import { QUORA_ITEM, QUORA_STATUS_INITIAL } from './constants';
+import { QUORA_ITEMS_INITIAL, QUORA_STATUS_INITIAL } from './constants';
 
 const namespaced = true;
 
-const quoraItems: QuoraItem[] = [];
-
 const state: QuoraStore = {
-  quoraItems,
+  quoraItems: QUORA_ITEMS_INITIAL,
   quoraStatus: QUORA_STATUS_INITIAL,
 };
 

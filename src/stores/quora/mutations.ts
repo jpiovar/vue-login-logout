@@ -1,7 +1,7 @@
 import { MutationTree } from 'vuex';
 import { QuoraStore, QuoraItem } from './quora.types';
 import {
-  QUORA_ITEM, QUORA_STATUS_INITIAL, QUORA_STATUS_LOADING, QUORA_STATUS_DONE,
+  QUORA_ITEM_INITIAL, QUORA_STATUS_INITIAL, QUORA_STATUS_LOADING, QUORA_STATUS_DONE,
 } from './constants';
 
 const mutations: MutationTree<QuoraStore> = {
