@@ -1,13 +1,12 @@
 <template>
-  <div class="card shadow p-3 mb-4 bg-light rounded">
+  <div class="card text-white bg-primary p-1 mb-4">
     <div class="card-header">
         <span class="qa-author">{{ `${itemData.author.name} / ${itemData.author.email}` }}</span>
         <button type="button" class="btn btn-danger btn-sm btn-item">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            Remove question
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
     </div>
-    <div class="card-body">
+    <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
         <span class="qa-text mb-3">{{itemData.text}}</span>
         <answer-item v-for="(item, index) in itemData.answers"
@@ -17,11 +16,15 @@
         />
       </p>
     </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-success btn-sm btn-item">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        Add answer
-      </button>
+    <div class="card-footer bg-light text-dark">
+      <div class="input-group">
+        <textarea class="form-control" aria-label="textarea" rows="1"></textarea>
+        <div class="input-group-append">
+          <button type="button" class="btn btn-success btn-item round">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

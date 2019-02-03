@@ -1,13 +1,12 @@
 <template>
-  <div class="card p-2 mb-3 bg-white rounded">
+  <div class="card text-white bg-success p-1 mb-3">
     <div class="card-header">
         <span class="qa-author">{{ `${itemData.author.name} / ${itemData.author.email}` }}</span>
         <button type="button" class="btn btn-danger btn-sm btn-item">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            Remove answer
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
     </div>
-    <div class="card-body">
+    <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
         <span class="qa-text">{{itemData.text}}</span>
       </p>

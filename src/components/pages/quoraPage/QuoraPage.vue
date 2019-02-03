@@ -3,10 +3,14 @@
     <div class="row mb-3">
       <div class="col-md-9">
         <h2>Simple Quora</h2>
-        <button type="button" class="btn btn-success btn-sm btn-item">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          Add question
-        </button>
+        <div class="input-group">
+          <textarea class="form-control" aria-label="textarea" rows="1"></textarea>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-primary btn-item">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
