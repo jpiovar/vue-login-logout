@@ -1,14 +1,31 @@
 <template>
-<div class="container">
-    <div class="row">
+  <div class="container">
+    <div class="row mb-3">
       <div class="col-md-9">
-        <quora-item v-for="(item, index) in quoraItems" :key="item.id" :index="index"/>
-      </div>
-      <div class="col-md-3">
-        <user-info :logoutHandler="logout" :userName="userProfile.name" :userEmail="userProfile.email"/>
+        <h2>Simple Quora</h2>
+        <button type="button" class="btn btn-success btn-sm btn-item">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add question
+        </button>
       </div>
     </div>
-</div>
+    <div class="row">
+      <div class="col-md-9">
+        <quora-item v-for="(item, index) in quoraItems"
+          :key="item.id"
+          :index="index"
+          :itemData="item"
+        />
+      </div>
+      <div class="col-md-3">
+        <user-info
+          :logoutHandler="logout"
+          :userName="userProfile.name"
+          :userEmail="userProfile.email"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -55,10 +72,10 @@ export default class QuoraPage extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.row {
-    height: 500px;
-    .col-md-6 {
-        height: 500px;
+.btn-item {
+    float: right;
+    i {
+        font-size: 18px;
     }
 }
 </style>

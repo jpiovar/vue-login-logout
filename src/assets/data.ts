@@ -12,44 +12,76 @@ export const userProfiles = [{
 
 export const quoraContent = [{
   id: 'q1',
-  authorId: 'j1',
+  author: {
+    id: 'j1',
+    name: 'janko',
+    email: 'janko@ok.ok',
+  },
   text: 'sense of life',
-  anwers: [
+  answers: [
     {
       id: 'a1',
-      authorId: 'h1',
+      author: {
+        id: 'j1',
+        name: 'janko',
+        email: 'janko@ok.ok',
+      },
       text: 'nobody knows sense of life a',
     },
     {
       id: 'a2',
-      authorId: 'j1',
+      author: {
+        id: 'j1',
+        name: 'janko',
+        email: 'janko@ok.ok',
+      },
       text: 'nobody knows sense of life j',
     },
     {
       id: 'a3',
-      authorId: 'h1',
+      author: {
+        id: 'h1',
+        name: 'hrasko',
+        email: 'hrasko@ok.ok',
+      },
       text: 'nobody knows sense of life h',
     },
   ],
 },
 {
   id: 'q2',
-  authorId: 'j1',
+  author: {
+    id: 'h1',
+    name: 'hrasko',
+    email: 'hrasko@ok.ok',
+  },
   text: 'sense of life and nonsense of all',
-  anwers: [
+  answers: [
     {
       id: 'a1',
-      authorId: 'h1',
+      author: {
+        id: 'j1',
+        name: 'janko',
+        email: 'janko@ok.ok',
+      },
       text: 'nobody knows sense of life a',
     },
     {
       id: 'a2',
-      authorId: 'j1',
+      author: {
+        id: 'h1',
+        name: 'hrasko',
+        email: 'hrasko@ok.ok',
+      },
       text: 'nobody knows sense of life j',
     },
     {
       id: 'a3',
-      authorId: 'h1',
+      author: {
+        id: 'j1',
+        name: 'janko',
+        email: 'janko@ok.ok',
+      },
       text: 'nobody knows sense of life h',
     },
   ],

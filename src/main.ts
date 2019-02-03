@@ -3,6 +3,7 @@ import App from './App.vue';
 import store from './stores';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 Vue.config.productionTip = false;
 

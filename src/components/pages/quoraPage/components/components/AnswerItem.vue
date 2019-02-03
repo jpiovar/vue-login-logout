@@ -1,27 +1,16 @@
 <template>
-  <div class="card shadow p-3 mb-4 bg-light rounded">
+  <div class="card p-2 mb-3 bg-white rounded">
     <div class="card-header">
         <span class="qa-author">{{ `${itemData.author.name} / ${itemData.author.email}` }}</span>
         <button type="button" class="btn btn-danger btn-sm btn-item">
             <i class="fa fa-times" aria-hidden="true"></i>
-            Remove question
+            Remove answer
         </button>
     </div>
     <div class="card-body">
       <p class="card-text text-left">
-        <span class="qa-text mb-3">{{itemData.text}}</span>
-        <answer-item v-for="(item, index) in itemData.answers"
-          :key="item.id"
-          :index="index"
-          :itemData="item"
-        />
+        <span class="qa-text">{{itemData.text}}</span>
       </p>
-    </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-success btn-sm btn-item">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        Add answer
-      </button>
     </div>
   </div>
 </template>
@@ -29,12 +18,9 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import AnswerItem from './components/AnswerItem.vue';
 
 @Component({
-  components: {
-    AnswerItem,
-  },
+  components: {},
   props: {
     index: {
       required: true,
@@ -50,7 +36,7 @@ import AnswerItem from './components/AnswerItem.vue';
     },
   },
 })
-export default class QuoraItem extends Vue {
+export default class AnswerItem extends Vue {
   msg!: string;
 
   itemData!: object;
@@ -65,12 +51,11 @@ export default class QuoraItem extends Vue {
 .qa-text {
   display: inline-block;
   margin: 10px 0;
-  font-size: 20px;
 }
 .btn-item {
-    float: right;
-    i {
-        font-size: 18px;
-    }
+  float: right;
+  i {
+    font-size: 18px;
+  }
 }
 </style>
