@@ -4,9 +4,12 @@
       <div class="col-md-9">
         <h2>Simple Quora</h2>
         <div class="input-group">
-          <textarea class="form-control" aria-label="textarea" rows="1"></textarea>
+          <textarea v-model="newQuestionVal" @keydown.enter.prevent="addNewQuestion"
+            class="form-control"
+            aria-label="textarea" rows="1">
+          </textarea>
           <div class="input-group-append">
-            <button type="button" class="btn btn-primary btn-item">
+            <button type="button" class="btn btn-primary btn-item" @click="addNewQuestion">
               <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
           </div>
@@ -57,15 +60,32 @@ const QuoraStore = namespace(QUORA);
 export default class QuoraPage extends Vue {
   msg!: string;
 
+  newQuestionVal: string = '';
+
   @UserStore.Action logoutUser: any;
 
   @UserStore.Getter userData: any;
 
   @QuoraStore.Getter quoraItems: any;
 
+  @QuoraStore.Action storeQuoraData: any;
+
   logout() {
     console.log('logout clicked');
     this.logoutUser();
+  }
+
+  addNewQuestion() {
+    const items = this.quoraItems;
+    const item = {
+      id: Date.now(),
+      text: this.newQuestionVal,
+      author: this.userData,
+      answers: [],
+    };
+    items.push(item);
+    this.newQuestionVal = '';
+    this.storeQuoraData(items);
   }
 
   get userProfile() {
