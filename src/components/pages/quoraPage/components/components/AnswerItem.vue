@@ -56,7 +56,7 @@ export default class AnswerItem extends Vue {
 }
 .btn-item {
   float: right;
-  margin-left: 5px;
+  margin-right: 5px;
   i {
     font-size: 18px;
   }
