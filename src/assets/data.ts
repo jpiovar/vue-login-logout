@@ -11,7 +11,7 @@ export const userProfiles = [{
 }];
 
 export const quoraContent = [{
-  id: '1549306955',
+  id: '1549306955000',
   author: {
     id: 'j1',
     name: 'janko',
@@ -20,7 +20,7 @@ export const quoraContent = [{
   text: 'sense of life',
   answers: [
     {
-      id: '1549306984',
+      id: '1549306984000',
       author: {
         id: 'j1',
         name: 'janko',
@@ -29,7 +29,7 @@ export const quoraContent = [{
       text: 'nobody knows sense of life a',
     },
     {
-      id: '1549306999',
+      id: '1549306999000',
       author: {
         id: 'j1',
         name: 'janko',
@@ -38,7 +38,7 @@ export const quoraContent = [{
       text: 'nobody knows sense of life j',
     },
     {
-      id: '1549307024',
+      id: '1549307024000',
       author: {
         id: 'h1',
         name: 'hrasko',
@@ -49,7 +49,7 @@ export const quoraContent = [{
   ],
 },
 {
-  id: '1549307029',
+  id: '1549307029000',
   author: {
     id: 'h1',
     name: 'hrasko',
@@ -58,7 +58,7 @@ export const quoraContent = [{
   text: 'sense of life and nonsense of all',
   answers: [
     {
-      id: '1549307053',
+      id: '1549307053000',
       author: {
         id: 'j1',
         name: 'janko',
@@ -67,7 +67,7 @@ export const quoraContent = [{
       text: 'nobody knows sense of life a',
     },
     {
-      id: '1549307059',
+      id: '1549307059000',
       author: {
         id: 'h1',
         name: 'hrasko',
@@ -76,7 +76,7 @@ export const quoraContent = [{
       text: 'nobody knows sense of life j',
     },
     {
-      id: '1549307077',
+      id: '1549307077000',
       author: {
         id: 'j1',
         name: 'janko',

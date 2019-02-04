@@ -81,6 +81,7 @@ export default class QuoraPage extends Vue {
   }
 
   addNewQuestion() {
+    debugger;
     const items = this.quoraItems;
     const item = {
       id: `${Date.now()}`,

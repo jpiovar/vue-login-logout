@@ -69,7 +69,7 @@ export default class QuoraCmp extends Vue {
 
   get timeStamp(): string {
     debugger;
-    const date = new Date(Number(this.itemData.id) * 1000);
+    const date = new Date(Number(this.itemData.id));
     const dVal = {
       year: date.getFullYear(),
       month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),

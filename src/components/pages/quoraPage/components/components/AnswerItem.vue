@@ -47,7 +47,7 @@ export default class AnswerItem extends Vue {
   itemData!: Answer;
 
   get timeStamp(): string {
-    const date = new Date(Number(this.itemData.id) * 1000);
+    const date = new Date(Number(this.itemData.id));
     const dVal = {
       year: date.getFullYear(),
       month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),
