@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div class="col-md-9">
-        <quora-item v-for="(item, index) in quoraItems"
+        <quora-cmp v-for="(item, index) in quoraItems"
           :key="item.id"
           :index="index"
           :itemData="item"
@@ -42,7 +42,9 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { USER, QUORA } from '../../../stores/constants';
-import QuoraItem from './components/QuoraItem.vue';
+import { UserData } from '../../../stores/user/user.types';
+import { QuoraItem } from '../../../stores/quora/quora.types';
+import QuoraCmp from './components/QuoraCmp.vue';
 import UserInfo from './components/UserInfo.vue';
 
 const UserStore = namespace(USER);
@@ -50,7 +52,7 @@ const QuoraStore = namespace(QUORA);
 
 @Component({
   components: {
-    QuoraItem,
+    QuoraCmp,
     UserInfo,
   },
   props: {
@@ -65,13 +67,13 @@ export default class QuoraPage extends Vue {
 
   newQuestionVal: string = '';
 
-  @UserStore.Action logoutUser: any;
+  @UserStore.Action logoutUser!: () => void;
 
-  @UserStore.Getter userData: any;
+  @UserStore.Getter userData!: UserData;
 
-  @QuoraStore.Getter quoraItems: any;
+  @QuoraStore.Getter quoraItems!: QuoraItem[];
 
-  @QuoraStore.Action storeQuoraData: any;
+  @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
 
   logout() {
     console.log('logout clicked');
@@ -81,7 +83,7 @@ export default class QuoraPage extends Vue {
   addNewQuestion() {
     const items = this.quoraItems;
     const item = {
-      id: Date.now(),
+      id: `${Date.now()}`,
       text: this.newQuestionVal,
       author: this.userData,
       answers: [],

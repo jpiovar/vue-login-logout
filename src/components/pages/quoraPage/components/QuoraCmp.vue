@@ -59,7 +59,7 @@ import AnswerItem from './components/AnswerItem.vue';
     },
   },
 })
-export default class QuoraItem extends Vue {
+export default class QuoraCmp extends Vue {
   msg!: string;
 
   itemData!: object;
