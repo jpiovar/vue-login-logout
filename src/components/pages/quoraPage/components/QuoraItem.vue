@@ -5,6 +5,9 @@
         <button type="button" class="btn btn-danger btn-sm btn-item">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
+        <button type="button" class="btn btn-light btn-sm btn-item">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
@@ -75,6 +78,7 @@ export default class QuoraItem extends Vue {
 }
 .btn-item {
     float: right;
+    margin-left: 5px;
     i {
         font-size: 18px;
     }
