@@ -18,6 +18,9 @@
     </div>
     <div class="card-footer bg-light text-dark">
       <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">New answer</span>
+        </div>
         <textarea class="form-control" aria-label="textarea" rows="1"></textarea>
         <div class="input-group-append">
           <button type="button" class="btn btn-success btn-item round">

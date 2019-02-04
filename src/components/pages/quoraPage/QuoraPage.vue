@@ -4,6 +4,9 @@
       <div class="col-md-9">
         <h2>Simple Quora</h2>
         <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">New question</span>
+          </div>
           <textarea v-model="newQuestionVal" @keydown.enter.prevent="addNewQuestion"
             class="form-control"
             aria-label="textarea" rows="1">
