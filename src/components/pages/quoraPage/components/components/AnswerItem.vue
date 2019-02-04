@@ -1,7 +1,9 @@
 <template>
   <div class="card text-white bg-success p-1 mb-3">
     <div class="card-header">
-        <span class="qa-author">{{ `${itemData.author.name} / ${itemData.author.email}` }}</span>
+        <span class="qa-author">
+          {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
+        </span>
         <button type="button" class="btn btn-danger btn-sm btn-item">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
@@ -20,6 +22,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
+import { Answer } from '../../../../../stores/quora/quora.types';
 
 @Component({
   components: {},
@@ -41,7 +44,20 @@ import { namespace } from 'vuex-class';
 export default class AnswerItem extends Vue {
   msg!: string;
 
-  itemData!: object;
+  itemData!: Answer;
+
+  get timeStamp(): string {
+    const date = new Date(Number(this.itemData.id) * 1000);
+    const dVal = {
+      year: date.getFullYear(),
+      month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),
+      day: `0${date.getDate()}`.slice(-2),
+      hour: `0${date.getHours()}`.slice(-2),
+      minute: `0${date.getMinutes()}`.slice(-2),
+      second: `0${date.getSeconds()}`.slice(-2),
+    };
+    return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
+  }
 }
 </script>
 

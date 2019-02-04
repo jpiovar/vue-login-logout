@@ -93,6 +93,14 @@ export default class QuoraPage extends Vue {
     this.storeQuoraData(items);
   }
 
+  // get ordered(): (items: QuoraItem[], way: string) => QuoraItem[] {
+  //   return (items: QuoraItem[], way: string) => items.sort((a, b) => a.id > b.id ? -1 : 1);
+  // }
+
+  ordered(itemsA: QuoraItem[], way: string): QuoraItem[] {
+    return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) : (a.id < b.id ? 1 : -1));
+  }
+
   get userProfile() {
     const { name, email } = this.userData;
     return { name, email };
