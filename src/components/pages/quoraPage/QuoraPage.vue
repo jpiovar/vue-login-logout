@@ -21,7 +21,7 @@
     </div>
     <div class="row">
       <div class="col-md-9">
-        <quora-cmp v-for="(item, index) in quoraItems"
+        <quora-cmp v-for="(item, index) in orderNewTop"
           :key="item.id"
           :index="index"
           :itemData="item"
@@ -82,24 +82,29 @@ export default class QuoraPage extends Vue {
 
   addNewQuestion() {
     debugger;
-    const items = this.quoraItems;
-    const item = {
-      id: `${Date.now()}`,
-      text: this.newQuestionVal,
-      author: this.userData,
-      answers: [],
-    };
-    items.push(item);
-    this.newQuestionVal = '';
-    this.storeQuoraData(items);
+    if (this.newQuestionVal.trim()) {
+      const items = this.quoraItems;
+      const item = {
+        id: `${Date.now()}`,
+        text: this.newQuestionVal,
+        author: this.userData,
+        answers: [],
+      };
+      items.push(item);
+      this.newQuestionVal = '';
+      this.storeQuoraData(items);
+    }
   }
 
   // get ordered(): (items: QuoraItem[], way: string) => QuoraItem[] {
-  //   return (items: QuoraItem[], way: string) => items.sort((a, b) => a.id > b.id ? -1 : 1);
+  //   // return (items: QuoraItem[], way: string) => items.sort((a, b) => a.id > b.id ? -1 : 1);
+  //   return (items: QuoraItem[], way: string) => items;
   // }
 
-  ordered(itemsA: QuoraItem[], way: string): QuoraItem[] {
-    return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) : (a.id < b.id ? 1 : -1));
+  get orderNewTop(): QuoraItem[] {
+    // return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) :
+  // (a.id < b.id ? 1 : -1));
+    return this.quoraItems.sort((a, b) => (a.id < b.id ? 1 : -1));
   }
 
   get userProfile() {
