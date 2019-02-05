@@ -86,7 +86,6 @@ export default class QuoraPage extends Vue {
   }
 
   addNewQuestion() {
-    debugger;
     if (this.newQuestionVal.trim()) {
       // const items = this.quoraItems;
       const item = {
