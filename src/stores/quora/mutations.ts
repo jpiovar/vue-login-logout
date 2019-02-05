@@ -6,6 +6,7 @@ import {
 
 const mutations: MutationTree<QuoraStore> = {
   storeQuoraData(state: QuoraStore, data: QuoraItem) {
+    debugger;
     const newState = {
       quoraItems: data,
       quoraStatus: QUORA_STATUS_LOADED,

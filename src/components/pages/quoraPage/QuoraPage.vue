@@ -75,24 +75,30 @@ export default class QuoraPage extends Vue {
 
   @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
 
+  @QuoraStore.Action addNewQuestionStore!: (param: QuoraItem) => void;
+
+  @QuoraStore.Action destroyQuoraData!: () => void;
+
   logout() {
     console.log('logout clicked');
     this.logoutUser();
+    this.destroyQuoraData();
   }
 
   addNewQuestion() {
     debugger;
     if (this.newQuestionVal.trim()) {
-      const items = this.quoraItems;
+      // const items = this.quoraItems;
       const item = {
         id: `${Date.now()}`,
-        text: this.newQuestionVal,
+        text: this.newQuestionVal.trim(),
         author: this.userData,
         answers: [],
       };
-      items.push(item);
+      // items.push(item);
       this.newQuestionVal = '';
-      this.storeQuoraData(items);
+      this.addNewQuestionStore(item);
+      // this.storeQuoraData(items);
     }
   }
 
