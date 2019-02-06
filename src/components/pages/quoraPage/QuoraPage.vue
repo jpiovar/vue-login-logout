@@ -22,8 +22,8 @@
     <div class="row">
       <div class="col-md-9">
         <quora-cmp v-for="(item, index) in orderNewTop"
-          :key="item.id"
-          :index="index"
+          :key="index"
+          :itemId="index"
           :itemData="item"
         />
       </div>
@@ -107,9 +107,11 @@ export default class QuoraPage extends Vue {
   // }
 
   get orderNewTop(): QuoraItem[] {
+    debugger;
     // return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) :
-  // (a.id < b.id ? 1 : -1));
-    return this.quoraItems.sort((a, b) => (a.id < b.id ? 1 : -1));
+    // (a.id < b.id ? 1 : -1));
+    // return this.quoraItems.sort((a, b) => (a.id < b.id ? 1 : -1));
+    return this.quoraItems;
   }
 
   get userProfile() {

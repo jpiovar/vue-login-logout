@@ -27,13 +27,13 @@ import { Answer } from '../../../../../stores/quora/quora.types';
 @Component({
   components: {},
   props: {
-    index: {
-      required: true,
-      type: Number,
-    },
     itemData: {
       required: true,
       type: Object,
+    },
+    itemId: {
+      required: true,
+      type: String,
     },
     msg: {
       required: false,
@@ -46,8 +46,10 @@ export default class AnswerItem extends Vue {
 
   itemData!: Answer;
 
+  itemId!: string;
+
   get timeStamp(): string {
-    const date = new Date(Number(this.itemData.id));
+    const date = new Date(Number(this.itemId));
     const dVal = {
       year: date.getFullYear(),
       month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),

@@ -15,8 +15,8 @@
       <p class="card-text text-left">
         <span class="qa-text mb-3">{{itemData.text}}</span>
         <answer-item v-for="(item, index) in itemData.answers"
-          :key="item.id"
-          :index="index"
+          :key="index"
+          :itemId="index"
           :itemData="item"
         />
       </p>
@@ -48,13 +48,13 @@ import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
     AnswerItem,
   },
   props: {
-    index: {
-      required: true,
-      type: Number,
-    },
     itemData: {
       required: true,
       type: Object,
+    },
+    itemId: {
+      required: true,
+      type: String,
     },
     msg: {
       required: false,
@@ -67,9 +67,10 @@ export default class QuoraCmp extends Vue {
 
   itemData!: QuoraItem;
 
+  itemId!: string;
+
   get timeStamp(): string {
-    debugger;
-    const date = new Date(Number(this.itemData.id));
+    const date = new Date(Number(this.itemId));
     const dVal = {
       year: date.getFullYear(),
       month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),
@@ -79,10 +80,6 @@ export default class QuoraCmp extends Vue {
       second: `0${date.getSeconds()}`.slice(-2),
     };
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
-  }
-
-  ordered(itemsA: Answer[], way: string): Answer[] {
-    return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) : (a.id < b.id ? 1 : -1));
   }
 }
 </script>
