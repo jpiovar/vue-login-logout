@@ -88,12 +88,21 @@ export default class QuoraPage extends Vue {
   addNewQuestion() {
     if (this.newQuestionVal.trim()) {
       // const items = this.quoraItems;
-      const item = {
-        id: `${Date.now()}`,
+      const id = Date.now();
+      const item: any = {};
+      item[id] = {
         text: this.newQuestionVal.trim(),
         author: this.userData,
-        answers: [],
-      };
+        answers: {},
+      }
+
+      // const item: any = {
+      //   {
+      //   text: this.newQuestionVal.trim(),
+      //   author: this.userData,
+      //   answers: {},
+      // }
+      // };
       // items.push(item);
       this.newQuestionVal = '';
       this.addNewQuestionStore(item);

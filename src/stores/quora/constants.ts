@@ -1,14 +1,13 @@
 import { QuoraItem, QuoraStatus } from './quora.types';
 
 export const QUORA_ITEM_INITIAL: QuoraItem = {
-  id: '',
   author: {
     id: '',
     name: '',
     email: '',
   },
   text: '',
-  answers: [],
+  answers: {},
 };
 
 export const QUORA_ITEMS_INITIAL: QuoraItem[] = [];
