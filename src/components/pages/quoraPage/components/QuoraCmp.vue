@@ -42,6 +42,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { QUORA } from '../../../../stores/constants';
+import { QLEVEL } from '../../../../stores/quora/constants';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 
@@ -71,7 +72,7 @@ export default class QuoraCmp extends Vue {
 
   itemData!: QuoraItem;
 
-  @QuoraStore.Action removeQuestionStore!: (param: string) => void;
+  @QuoraStore.Action removeQuestionStore!: (param: object) => void;
 
   get timeStamp(): string {
     debugger;
@@ -94,7 +95,7 @@ export default class QuoraCmp extends Vue {
 
   removeQuestion(id: string) {
     debugger;
-    this.removeQuestionStore(id);
+    this.removeQuestionStore({ QLEVEL, id });
   }
 }
 </script>

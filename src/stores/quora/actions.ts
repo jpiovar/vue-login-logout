@@ -1,6 +1,7 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
 import { QuoraStore, QuoraItem } from './quora.types';
+import { QLEVEL, ALEVEL } from './constants';
 
 const actions: ActionTree<QuoraStore, RootState> = {
   storeQuoraData({ commit }: ActionContext<QuoraStore, RootState>, data: QuoraItem[]) {
@@ -11,10 +12,10 @@ const actions: ActionTree<QuoraStore, RootState> = {
     data.push(item);
     commit('storeQuoraData', data);
   },
-  removeQuestionStore({ commit, state }: ActionContext<QuoraStore, RootState>, itemId: string) {
+  removeQuestionStore({ commit, state }:
+    ActionContext<QuoraStore, RootState>, { level, itemId }: { level: string, itemId: string }) {
     debugger;
     const data: QuoraItem[] = state.quoraItems;
-    // data.push(itemId);
     let index = 0;
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === itemId) {
