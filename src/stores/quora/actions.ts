@@ -11,6 +11,20 @@ const actions: ActionTree<QuoraStore, RootState> = {
     data.push(item);
     commit('storeQuoraData', data);
   },
+  removeQuestionStore({ commit, state }: ActionContext<QuoraStore, RootState>, itemId: string) {
+    debugger;
+    const data: QuoraItem[] = state.quoraItems;
+    // data.push(itemId);
+    let index = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === itemId) {
+        index = i;
+        break;
+      }
+    }
+    data.splice(index, 1);
+    commit('storeQuoraData', data);
+  },
   destroyQuoraData({ commit }: ActionContext<QuoraStore, RootState>) {
     const data: QuoraItem[] = [];
     commit('storeQuoraData', data);

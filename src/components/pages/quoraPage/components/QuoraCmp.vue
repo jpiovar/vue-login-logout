@@ -4,7 +4,8 @@
         <span class="qa-header">
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
-        <button type="button" class="btn btn-danger btn-sm btn-item">
+        <button type="button" class="btn btn-danger btn-sm btn-item"
+          @click="()=>removeQuestion(itemData.id)">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item">
@@ -40,8 +41,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
+import { QUORA } from '../../../../stores/constants';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
+
+const QuoraStore = namespace(QUORA);
 
 @Component({
   components: {
@@ -67,6 +71,8 @@ export default class QuoraCmp extends Vue {
 
   itemData!: QuoraItem;
 
+  @QuoraStore.Action removeQuestionStore!: (param: string) => void;
+
   get timeStamp(): string {
     debugger;
     const date = new Date(Number(this.itemData.id));
@@ -81,8 +87,14 @@ export default class QuoraCmp extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  ordered(itemsA: Answer[], way: string): Answer[] {
-    return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) : (a.id < b.id ? 1 : -1));
+  // ordered(itemsA: Answer[], way: string): Answer[] {
+  //   return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) :
+  // (a.id < b.id ? 1 : -1));
+  // }
+
+  removeQuestion(id: string) {
+    debugger;
+    this.removeQuestionStore(id);
   }
 }
 </script>
