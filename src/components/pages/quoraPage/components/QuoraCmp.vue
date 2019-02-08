@@ -5,7 +5,7 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeQuestion(itemData.id)">
+          @click="()=>removeQuestion(index)">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item">
@@ -15,9 +15,10 @@
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
         <span class="qa-text mb-3">{{itemData.text}}</span>
-        <answer-item v-for="(item, index) in itemData.answers"
+        <answer-item v-for="(item, i) in itemData.answers"
           :key="item.id"
-          :index="index"
+          :qIndex="index"
+          :index="i"
           :itemData="item"
         />
       </p>
@@ -72,7 +73,10 @@ export default class QuoraCmp extends Vue {
 
   itemData!: QuoraItem;
 
-  @QuoraStore.Action removeQuestionStore!: (param: object) => void;
+  @QuoraStore.Action removeQuestionStore!:
+    ({ level, index }: { level: string, index: number }) => void;
+
+  qlevel: string = QLEVEL;
 
   get timeStamp(): string {
     debugger;
@@ -93,9 +97,10 @@ export default class QuoraCmp extends Vue {
   // (a.id < b.id ? 1 : -1));
   // }
 
-  removeQuestion(id: string) {
+  removeQuestion(index: number) {
     debugger;
-    this.removeQuestionStore({ QLEVEL, id });
+    const level = this.qlevel;
+    this.removeQuestionStore({ level, index });
   }
 }
 </script>

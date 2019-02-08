@@ -6,10 +6,7 @@ export type Answer = {
     text: string;
 };
 
-export interface QuoraItem {
-    id: string;
-    author: UserData;
-    text: string;
+export interface QuoraItem extends Answer {
     answers: Answer[];
 }
 

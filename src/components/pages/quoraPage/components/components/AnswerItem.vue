@@ -4,7 +4,8 @@
         <span class="qa-author">
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
-        <button type="button" class="btn btn-danger btn-sm btn-item">
+        <button type="button" class="btn btn-danger btn-sm btn-item"
+          @click="()=>removeAnswer(qIndex, index)">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item">
@@ -22,11 +23,19 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
+import { QUORA } from '../../../../../stores/constants';
+import { ALEVEL } from '../../../../../stores/quora/constants';
 import { Answer } from '../../../../../stores/quora/quora.types';
+
+const QuoraStore = namespace(QUORA);
 
 @Component({
   components: {},
   props: {
+    qIndex: {
+      required: true,
+      type: Number,
+    },
     index: {
       required: true,
       type: Number,
@@ -46,6 +55,11 @@ export default class AnswerItem extends Vue {
 
   itemData!: Answer;
 
+  @QuoraStore.Action removeQuestionStore!:
+    ({ level, qIndex, index }: { level: string, qIndex: number, index: number}) => void;
+
+  alevel: string = ALEVEL;
+
   get timeStamp(): string {
     const date = new Date(Number(this.itemData.id));
     const dVal = {
@@ -57,6 +71,12 @@ export default class AnswerItem extends Vue {
       second: `0${date.getSeconds()}`.slice(-2),
     };
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
+  }
+
+  removeAnswer(qIndex: number, index: number) {
+    debugger;
+    const level = this.alevel;
+    this.removeQuestionStore({ level, qIndex, index });
   }
 }
 </script>
