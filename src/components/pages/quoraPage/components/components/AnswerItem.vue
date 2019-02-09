@@ -2,6 +2,7 @@
   <div class="card text-white bg-success p-1 mb-3">
     <div class="card-header">
         <span class="qa-author">
+          <b>{{ `A ${index + 1}. &nbsp;` }}</b>
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
