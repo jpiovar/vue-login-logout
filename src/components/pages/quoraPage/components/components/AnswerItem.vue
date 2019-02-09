@@ -55,7 +55,7 @@ export default class AnswerItem extends Vue {
   @QuoraStore.Action removeQuestionStore!:
     ({ level, itemId }: { level: string, itemId: string}) => void;
 
-  alevel: string = ALEVEL;
+  readonly alevel: string = ALEVEL;
 
   get timeStamp(): string {
     const date = new Date(Number(this.itemData.id));

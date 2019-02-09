@@ -28,7 +28,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">New answer</span>
         </div>
-        <textarea class="form-control" aria-label="textarea" rows="1"></textarea>
+        <textarea v-model="newAnswerVal" @keydown.enter.prevent="addNewQuestion"
+          class="form-control"
+          aria-label="textarea" rows="1">
+        </textarea>
         <div class="input-group-append">
           <button type="button" class="btn btn-success btn-item round">
             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -42,11 +45,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { QUORA } from '../../../../stores/constants';
+import { QUORA, USER } from '../../../../stores/constants';
+import { UserData } from '../../../../stores/user/user.types';
 import { QLEVEL } from '../../../../stores/quora/constants';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 
+const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
 
 @Component({
@@ -73,10 +78,16 @@ export default class QuoraCmp extends Vue {
 
   itemData!: QuoraItem;
 
+  newAnswerVal: string = '';
+
+  @UserStore.Getter userData!: UserData;
+
   @QuoraStore.Action removeQuestionStore!:
     ({ level, itemId }: { level: string, itemId: string }) => void;
 
-  qlevel: string = QLEVEL;
+  @QuoraStore.Action addNewQuestionStore!: ({ item }: { item: QuoraItem }) => void;
+
+  readonly qlevel: string = QLEVEL;
 
   get timeStamp(): string {
     debugger;
@@ -101,6 +112,20 @@ export default class QuoraCmp extends Vue {
     debugger;
     const level = this.qlevel;
     this.removeQuestionStore({ level, itemId });
+  }
+
+  addNewQuestion() {
+    debugger;
+    if (this.newAnswerVal.trim()) {
+      const item = {
+        id: `${Date.now()}`,
+        text: this.newAnswerVal.trim(),
+        author: this.userData,
+        answers: [],
+      };
+      this.newAnswerVal = '';
+      this.addNewQuestionStore({ item });
+    }
   }
 }
 </script>
