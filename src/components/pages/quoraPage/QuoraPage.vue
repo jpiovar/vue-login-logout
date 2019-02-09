@@ -80,7 +80,7 @@ export default class QuoraPage extends Vue {
   logout() {
     console.log('logout clicked');
     this.logoutUser();
-    this.destroyQuoraData();
+    // this.destroyQuoraData();
   }
 
   addNewQuestion() {
