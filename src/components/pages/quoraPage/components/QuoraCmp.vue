@@ -28,7 +28,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">New answer</span>
         </div>
-        <textarea v-model="newAnswerVal" @keydown.enter.prevent="addNewQuestion"
+        <textarea v-model="newAnswerVal" @keydown.enter.prevent="()=>addNewAnswer(itemData.id)"
           class="form-control"
           aria-label="textarea" rows="1">
         </textarea>
@@ -85,7 +85,8 @@ export default class QuoraCmp extends Vue {
   @QuoraStore.Action removeQuestionStore!:
     ({ level, itemId }: { level: string, itemId: string }) => void;
 
-  @QuoraStore.Action addNewQuestionStore!: ({ item }: { item: QuoraItem }) => void;
+  @QuoraStore.Action addNewAnswerStore!:
+    ({ qId, item }: { qId: string, item: Answer }) => void;
 
   readonly qlevel: string = QLEVEL;
 
@@ -114,17 +115,16 @@ export default class QuoraCmp extends Vue {
     this.removeQuestionStore({ level, itemId });
   }
 
-  addNewQuestion() {
+  addNewAnswer(qId: string) {
     debugger;
     if (this.newAnswerVal.trim()) {
       const item = {
         id: `${Date.now()}`,
         text: this.newAnswerVal.trim(),
         author: this.userData,
-        answers: [],
       };
       this.newAnswerVal = '';
-      this.addNewQuestionStore({ item });
+      this.addNewAnswerStore({ qId, item });
     }
   }
 }
