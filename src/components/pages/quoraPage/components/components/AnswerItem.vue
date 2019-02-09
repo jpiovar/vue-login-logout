@@ -5,7 +5,7 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeAnswer(qIndex, index)">
+          @click="()=>removeAnswer(itemData.id)">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item">
@@ -32,10 +32,6 @@ const QuoraStore = namespace(QUORA);
 @Component({
   components: {},
   props: {
-    qIndex: {
-      required: true,
-      type: Number,
-    },
     index: {
       required: true,
       type: Number,
@@ -56,7 +52,7 @@ export default class AnswerItem extends Vue {
   itemData!: Answer;
 
   @QuoraStore.Action removeQuestionStore!:
-    ({ level, qIndex, index }: { level: string, qIndex: number, index: number}) => void;
+    ({ level, itemId }: { level: string, itemId: string}) => void;
 
   alevel: string = ALEVEL;
 
@@ -73,10 +69,10 @@ export default class AnswerItem extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  removeAnswer(qIndex: number, index: number) {
+  removeAnswer(itemId: string) {
     debugger;
     const level = this.alevel;
-    this.removeQuestionStore({ level, qIndex, index });
+    this.removeQuestionStore({ level, itemId });
   }
 }
 </script>

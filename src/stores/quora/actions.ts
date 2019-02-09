@@ -13,16 +13,38 @@ const actions: ActionTree<QuoraStore, RootState> = {
     commit('storeQuoraData', data);
   },
   removeQuestionStore({ commit, state }:
-    ActionContext<QuoraStore, RootState>, { level, qIndex, index }:
-      { level: string, qIndex: number, index: number }) {
+    ActionContext<QuoraStore, RootState>, { level, itemId }:
+      { level: string, itemId: string }) {
     debugger;
+    let qIndex = 0;
+    let aIndex = 0;
     let data: QuoraItem[] = [];
     if (level === QLEVEL) {
       data = state.quoraItems;
-      data.splice(index, 1);
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id === itemId) {
+          qIndex = i;
+          break;
+        }
+      }
+      data.splice(qIndex, 1);
     } else if (level === ALEVEL) {
       data = state.quoraItems;
-      data[qIndex].answers.splice(index, 1);
+      let loopBreak = false;
+      for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i].answers.length; j++) {
+          if (data[i].answers[j].id === itemId) {
+            qIndex = i;
+            aIndex = j;
+            loopBreak = true;
+            break;
+          }
+        }
+        if (loopBreak) {
+          break;
+        }
+      }
+      data[qIndex].answers.splice(aIndex, 1);
     }
     commit('storeQuoraData', data);
   },
