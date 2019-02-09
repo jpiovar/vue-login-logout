@@ -6,10 +6,12 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeAnswer(itemData.id)">
+          @click="()=>removeAnswer(itemData.id)"
+          v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item">
+        <button type="button" class="btn btn-light btn-sm btn-item"
+          v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
     </div>
@@ -24,10 +26,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { QUORA } from '../../../../../stores/constants';
+import { QUORA, USER } from '../../../../../stores/constants';
+import { UserData } from '../../../../../stores/user/user.types';
 import { ALEVEL } from '../../../../../stores/quora/constants';
 import { Answer } from '../../../../../stores/quora/quora.types';
 
+const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
 
 @Component({
@@ -51,6 +55,8 @@ export default class AnswerItem extends Vue {
   msg!: string;
 
   itemData!: Answer;
+
+  @UserStore.Getter userData!: UserData;
 
   @QuoraStore.Action removeQuestionStore!:
     ({ level, itemId }: { level: string, itemId: string}) => void;

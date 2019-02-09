@@ -6,10 +6,12 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeQuestion(itemData.id)">
+          @click="()=>removeQuestion(itemData.id)"
+          v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item">
+        <button type="button" class="btn btn-light btn-sm btn-item"
+          v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
     </div>
@@ -33,7 +35,8 @@
           aria-label="textarea" rows="1">
         </textarea>
         <div class="input-group-append">
-          <button type="button" class="btn btn-success btn-item round">
+          <button type="button" class="btn btn-success btn-item round"
+            @click="()=>addNewAnswer(itemData.id)">
             <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
         </div>

@@ -7,6 +7,9 @@
         <br/>Email: {{ userEmail }}
       </p>
       <a href="#" class="btn btn-primary" @click="userLogout">Logout</a>
+      <p class="mt-3 text-left">
+        <sup>*</sup>You can edit / remove only your Quora items.
+      </p>
     </div>
   </div>
 </template>
