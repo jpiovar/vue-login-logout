@@ -73,9 +73,7 @@ export default class QuoraPage extends Vue {
 
   @QuoraStore.Getter quoraItems!: QuoraItem[];
 
-  @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
-
-  @QuoraStore.Action addNewQuestionStore!: (param: QuoraItem) => void;
+  @QuoraStore.Action addNewQuestionStore!: ({ item }: { item: QuoraItem }) => void;
 
   @QuoraStore.Action destroyQuoraData!: () => void;
 
@@ -87,17 +85,14 @@ export default class QuoraPage extends Vue {
 
   addNewQuestion() {
     if (this.newQuestionVal.trim()) {
-      // const items = this.quoraItems;
       const item = {
         id: `${Date.now()}`,
         text: this.newQuestionVal.trim(),
         author: this.userData,
         answers: [],
       };
-      // items.push(item);
       this.newQuestionVal = '';
-      this.addNewQuestionStore(item);
-      // this.storeQuoraData(items);
+      this.addNewQuestionStore({ item });
     }
   }
 
@@ -107,8 +102,6 @@ export default class QuoraPage extends Vue {
   // }
 
   get orderNewTop(): QuoraItem[] {
-    // return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) :
-  // (a.id < b.id ? 1 : -1));
     return this.quoraItems.sort((a, b) => (a.id < b.id ? 1 : -1));
   }
 

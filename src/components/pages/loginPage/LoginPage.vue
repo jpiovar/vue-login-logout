@@ -15,7 +15,8 @@ import axios, { AxiosResponse } from 'axios';
 import { USER, QUORA } from '../../../stores/constants';
 import LoginForm from './components/LoginForm.vue';
 import { userProfiles, quoraContent } from '../../../assets/data';
-import store from '@/store';
+import { UserData } from '@/stores/user/user.types';
+import { QuoraItem } from '@/stores/quora/quora.types';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
@@ -34,9 +35,9 @@ const QuoraStore = namespace(QUORA);
 export default class LoginPage extends Vue {
   msg!: string;
 
-  @UserStore.Action loginUser: any;
+  @UserStore.Action loginUser!: ({ id, name, email }: UserData) => void;
 
-  @QuoraStore.Action storeQuoraData: any;
+  @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
 
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');
