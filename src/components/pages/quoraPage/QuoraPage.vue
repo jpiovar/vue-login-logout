@@ -55,16 +55,9 @@ const QuoraStore = namespace(QUORA);
     QuoraCmp,
     UserInfo,
   },
-  props: {
-    msg: {
-      required: false,
-      type: String,
-    },
-  },
+  props: {},
 })
 export default class QuoraPage extends Vue {
-  msg!: string;
-
   newQuestionVal: string = '';
 
   @UserStore.Action logoutUser!: () => void;

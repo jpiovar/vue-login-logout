@@ -1,7 +1,6 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
 import { QuoraStore, QuoraItem, Answer } from './quora.types';
-import { QLEVEL, ALEVEL } from './constants';
 
 const actions: ActionTree<QuoraStore, RootState> = {
   storeQuoraData({ commit }:
@@ -21,38 +20,17 @@ const actions: ActionTree<QuoraStore, RootState> = {
     commit('storeQuoraData', data);
   },
   removeQuestionStore({ commit, state }:
-    ActionContext<QuoraStore, RootState>, { level, itemId }: { level: string, itemId: string }) {
+    ActionContext<QuoraStore, RootState>, { itemId }: { itemId: string }) {
     debugger;
     let qIndex = 0;
-    let aIndex = 0;
-    let data: QuoraItem[] = [];
-    if (level === QLEVEL) {
-      data = state.quoraItems;
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === itemId) {
-          qIndex = i;
-          break;
-        }
+    const data: QuoraItem[] = state.quoraItems;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === itemId) {
+        qIndex = i;
+        break;
       }
-      data.splice(qIndex, 1);
-    } else if (level === ALEVEL) {
-      data = state.quoraItems;
-      let loopBreak = false;
-      for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < data[i].answers.length; j++) {
-          if (data[i].answers[j].id === itemId) {
-            qIndex = i;
-            aIndex = j;
-            loopBreak = true;
-            break;
-          }
-        }
-        if (loopBreak) {
-          break;
-        }
-      }
-      data[qIndex].answers.splice(aIndex, 1);
     }
+    data.splice(qIndex, 1);
     commit('storeQuoraData', data);
   },
   addNewAnswerStore({ commit, state }:
@@ -65,6 +43,25 @@ const actions: ActionTree<QuoraStore, RootState> = {
         break;
       }
     }
+    commit('storeQuoraData', data);
+  },
+  removeAnswerStore({ commit, state }:
+    ActionContext<QuoraStore, RootState>, { itemId, qId }: { itemId: string, qId: string }) {
+    debugger;
+    const data: QuoraItem[] = state.quoraItems;
+    const qIndex: number = data.reduce((res, item, index) => {
+      if(item.id === qId) {
+        res = index;
+      }
+      return res;
+    }, 0);
+    const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
+      if(item.id === itemId) {
+        res = index;
+      }
+      return res;
+    }, 0);
+    data[qIndex].answers.splice(aIndex, 1);
     commit('storeQuoraData', data);
   },
 };

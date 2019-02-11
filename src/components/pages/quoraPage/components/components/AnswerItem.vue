@@ -6,7 +6,7 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeAnswer(itemData.id)"
+          @click="()=>removeAnswer(itemData.id, qId)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
@@ -28,7 +28,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { QUORA, USER } from '../../../../../stores/constants';
 import { UserData } from '../../../../../stores/user/user.types';
-import { ALEVEL } from '../../../../../stores/quora/constants';
 import { Answer } from '../../../../../stores/quora/quora.types';
 
 const UserStore = namespace(USER);
@@ -45,23 +44,19 @@ const QuoraStore = namespace(QUORA);
       required: true,
       type: Object,
     },
-    msg: {
-      required: false,
+    qId: {
+      required: true,
       type: String,
     },
   },
 })
 export default class AnswerItem extends Vue {
-  msg!: string;
-
   itemData!: Answer;
 
   @UserStore.Getter userData!: UserData;
 
-  @QuoraStore.Action removeQuestionStore!:
-    ({ level, itemId }: { level: string, itemId: string}) => void;
-
-  readonly alevel: string = ALEVEL;
+  @QuoraStore.Action removeAnswerStore!:
+    ({ itemId, qId }: { itemId: string, qId: string }) => void;
 
   get timeStamp(): string {
     const date = new Date(Number(this.itemData.id));
@@ -76,10 +71,9 @@ export default class AnswerItem extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  removeAnswer(itemId: string) {
+  removeAnswer(itemId: string, qId: string) {
     debugger;
-    const level = this.alevel;
-    this.removeQuestionStore({ level, itemId });
+    this.removeAnswerStore({ itemId, qId });
   }
 }
 </script>

@@ -22,6 +22,7 @@
           :key="item.id"
           :index="index"
           :itemData="item"
+          :qId="itemData.id"
         />
       </p>
     </div>
@@ -50,7 +51,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { QUORA, USER } from '../../../../stores/constants';
 import { UserData } from '../../../../stores/user/user.types';
-import { QLEVEL } from '../../../../stores/quora/constants';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 
@@ -70,15 +70,9 @@ const QuoraStore = namespace(QUORA);
       required: true,
       type: Object,
     },
-    msg: {
-      required: false,
-      type: String,
-    },
   },
 })
 export default class QuoraCmp extends Vue {
-  msg!: string;
-
   itemData!: QuoraItem;
 
   newAnswerVal: string = '';
@@ -86,12 +80,10 @@ export default class QuoraCmp extends Vue {
   @UserStore.Getter userData!: UserData;
 
   @QuoraStore.Action removeQuestionStore!:
-    ({ level, itemId }: { level: string, itemId: string }) => void;
+    ({ itemId }: { itemId: string }) => void;
 
   @QuoraStore.Action addNewAnswerStore!:
     ({ qId, item }: { qId: string, item: Answer }) => void;
-
-  readonly qlevel: string = QLEVEL;
 
   get timeStamp(): string {
     debugger;
@@ -114,8 +106,7 @@ export default class QuoraCmp extends Vue {
 
   removeQuestion(itemId: string) {
     debugger;
-    const level = this.qlevel;
-    this.removeQuestionStore({ level, itemId });
+    this.removeQuestionStore({ itemId });
   }
 
   addNewAnswer(qId: string) {
