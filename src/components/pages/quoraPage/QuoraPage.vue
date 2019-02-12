@@ -33,6 +33,7 @@
           :userName="userProfile.name"
           :userEmail="userProfile.email"
         />
+        <info-dialog/>
       </div>
     </div>
   </div>
@@ -46,6 +47,7 @@ import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
 import QuoraCmp from './components/QuoraCmp.vue';
 import UserInfo from './components/UserInfo.vue';
+import InfoDialog from './components/InfoDialog.vue';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
@@ -54,6 +56,7 @@ const QuoraStore = namespace(QUORA);
   components: {
     QuoraCmp,
     UserInfo,
+    InfoDialog,
   },
   props: {},
 })

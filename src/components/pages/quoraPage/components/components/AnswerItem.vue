@@ -11,6 +11,7 @@
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
+          @click="()=>editAnswer(itemData.id)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
@@ -26,12 +27,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { QUORA, USER } from '../../../../../stores/constants';
+import { QUORA, USER, MODE } from '../../../../../stores/constants';
 import { UserData } from '../../../../../stores/user/user.types';
 import { Answer } from '../../../../../stores/quora/quora.types';
+import { AppMode, Reference } from '@/stores/mode/mode.types';
+import { MODE_EDIT } from '@/stores/mode/constants';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
+const ModeStore = namespace(MODE);
 
 @Component({
   components: {},
@@ -58,6 +62,9 @@ export default class AnswerItem extends Vue {
   @QuoraStore.Action removeAnswerStore!:
     ({ itemId, qId }: { itemId: string, qId: string }) => void;
 
+  @ModeStore.Action setMode!:
+    ({ reference, status }: { reference: Reference, status: AppMode }) => void;
+
   get timeStamp(): string {
     const date = new Date(Number(this.itemData.id));
     const dVal = {
@@ -74,6 +81,13 @@ export default class AnswerItem extends Vue {
   removeAnswer(itemId: string, qId: string) {
     debugger;
     this.removeAnswerStore({ itemId, qId });
+  }
+
+  editAnswer(itemId: string) {
+    debugger;
+    const reference = { id: itemId };
+    const status = MODE_EDIT;
+    this.setMode({ reference, status });
   }
 }
 </script>
