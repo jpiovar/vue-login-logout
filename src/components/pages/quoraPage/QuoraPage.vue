@@ -33,7 +33,8 @@
           :userName="userProfile.name"
           :userEmail="userProfile.email"
         />
-        <info-dialog/>
+        <info-dialog v-if="showModal" :showModalRef="showModalHandle"/>
+        <button class="btn btn-primary" @click="showModal=true">Show modal</button>
       </div>
     </div>
   </div>
@@ -62,6 +63,8 @@ const QuoraStore = namespace(QUORA);
 })
 export default class QuoraPage extends Vue {
   newQuestionVal: string = '';
+
+  showModal: boolean = false;
 
   @UserStore.Action logoutUser!: () => void;
 
@@ -104,6 +107,10 @@ export default class QuoraPage extends Vue {
   get userProfile() {
     const { name, email } = this.userData;
     return { name, email };
+  }
+
+  showModalHandle() {
+    this.showModal = false;
   }
 }
 </script>
