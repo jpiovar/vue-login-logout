@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-success p-1 mb-3">
+  <div class="card text-white bg-success p-1 mb-3" :ref="itemData.id">
     <div class="card-header">
         <span class="qa-author">
           <b>{{ `A ${index + 1}. &nbsp;` }}</b>

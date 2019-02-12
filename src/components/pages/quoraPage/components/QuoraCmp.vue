@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-primary p-1 mb-4">
+  <div class="card text-white bg-primary p-1 mb-4" :ref="itemData.id">
     <div class="card-header">
         <span class="qa-header">
           <b>{{ `Q ${index + 1}. &nbsp;` }}</b>
@@ -11,6 +11,7 @@
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
+          @click="()=>editQuestion(itemData.id)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
@@ -49,13 +50,16 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { QUORA, USER } from '../../../../stores/constants';
+import { QUORA, USER, MODE } from '../../../../stores/constants';
 import { UserData } from '../../../../stores/user/user.types';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
+import { AppMode, Reference } from '@/stores/mode/mode.types';
+import { MODE_EDIT } from '../../../../stores/mode/constants';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
+const ModeStore = namespace(MODE);
 
 @Component({
   components: {
@@ -85,6 +89,9 @@ export default class QuoraCmp extends Vue {
   @QuoraStore.Action addNewAnswerStore!:
     ({ qId, item }: { qId: string, item: Answer }) => void;
 
+  @ModeStore.Action setMode!:
+    ({ reference, status }: { reference: Reference, status: AppMode }) => void;
+
   get timeStamp(): string {
     debugger;
     const date = new Date(Number(this.itemData.id));
@@ -99,14 +106,17 @@ export default class QuoraCmp extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  // ordered(itemsA: Answer[], way: string): Answer[] {
-  //   return itemsA.sort((a, b) => way === 'asc' ? (a.id > b.id ? 1 : -1) :
-  // (a.id < b.id ? 1 : -1));
-  // }
-
   removeQuestion(itemId: string) {
     debugger;
     this.removeQuestionStore({ itemId });
+  }
+
+  editQuestion(itemId: string) {
+    debugger;
+    this.scrollToElementPosition(itemId);
+    const reference = { id: itemId };
+    const status = MODE_EDIT;
+    this.setMode({ reference, status });
   }
 
   addNewAnswer(qId: string) {
@@ -120,6 +130,14 @@ export default class QuoraCmp extends Vue {
       this.newAnswerVal = '';
       this.addNewAnswerStore({ qId, item });
     }
+  }
+
+  scrollToElementPosition(itemId: string) {
+    debugger;
+    const el: HTMLElement = this.$refs[this.itemData.id] as HTMLElement;
+    window.scrollTo(0, el.offsetTop);
+    // const container: HTMLElement = document.getElementById(itemId) as HTMLElement;
+    // window.scrollTo(0, container.offsetTop);
   }
 }
 </script>
