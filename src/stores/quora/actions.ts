@@ -50,14 +50,14 @@ const actions: ActionTree<QuoraStore, RootState> = {
     debugger;
     const data: QuoraItem[] = state.quoraItems;
     const qIndex: number = data.reduce((res, item, index) => {
-      if(item.id === qId) {
-        res = index;
+      if (item.id === qId) {
+        return index;
       }
       return res;
     }, 0);
     const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
-      if(item.id === itemId) {
-        res = index;
+      if (item.id === itemId) {
+        return index;
       }
       return res;
     }, 0);
