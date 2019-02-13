@@ -1,5 +1,5 @@
 <template>
-  <div class="card text-white bg-primary p-1 mb-4" :ref="itemData.id">
+  <div class="card text-white bg-primary p-1 mb-4" :id="itemData.id" :ref="itemData.id">
     <div class="card-header">
         <span class="qa-header">
           <b>{{ `Q ${index + 1}. &nbsp;` }}</b>
@@ -55,7 +55,7 @@ import { UserData } from '../../../../stores/user/user.types';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
-import { MODE_EDIT } from '../../../../stores/mode/constants';
+import { MODE_EDIT, MODE_INITIAL, MODE_READ } from '../../../../stores/mode/constants';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
@@ -134,8 +134,11 @@ export default class QuoraCmp extends Vue {
 
   scrollToElementPosition(itemId: string) {
     debugger;
-    const el: HTMLElement = this.$refs[this.itemData.id] as HTMLElement;
-    window.scrollTo(0, el.offsetTop);
+    (this.$refs[this.itemData.id] as HTMLElement).scrollIntoView();
+
+    // const el: HTMLElement = this.$refs[this.itemData.id] as HTMLElement;
+    // window.scrollTo(0, el.offsetTop);
+
     // const container: HTMLElement = document.getElementById(itemId) as HTMLElement;
     // window.scrollTo(0, container.offsetTop);
   }

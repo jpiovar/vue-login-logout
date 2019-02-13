@@ -5,13 +5,19 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">
-          Modal title
+          Complete edit process
         </h4>
       </div>
       <div class="modal-body">
+        Please save or cancel changes for input you edited.
       </div>
       <div class="modal-footer">
-        <button class="btn btn-primary" @click="hideModal">Hide modal</button>
+        <button class="btn btn-success" @click="hideModal">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+        </button>
+        <button class="btn btn-warning" @click="hideModal">
+          <i class="fa fa-times" aria-hidden="true"></i> Cancel
+        </button>
       </div>
     </div>
   </div>
@@ -55,6 +61,7 @@ export default class InfoDialog extends Vue {
   }
 
   hideModal() {
+    debugger;
     this.showModalRef();
   }
 }

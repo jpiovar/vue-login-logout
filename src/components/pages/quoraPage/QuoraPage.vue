@@ -43,15 +43,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { USER, QUORA } from '../../../stores/constants';
+import { USER, QUORA, MODE } from '../../../stores/constants';
+import { MODE_EDIT } from '@/stores/mode/constants';
 import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
 import QuoraCmp from './components/QuoraCmp.vue';
 import UserInfo from './components/UserInfo.vue';
 import InfoDialog from './components/InfoDialog.vue';
+import { AppMode, Reference } from '@/stores/mode/mode.types';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
+const ModeStore = namespace(MODE);
 
 @Component({
   components: {
@@ -71,6 +74,10 @@ export default class QuoraPage extends Vue {
   @UserStore.Getter userData!: UserData;
 
   @QuoraStore.Getter quoraItems!: QuoraItem[];
+
+  @ModeStore.Getter modeStatus!: AppMode;
+
+  @ModeStore.Getter modeReference!: Reference;
 
   @QuoraStore.Action addNewQuestionStore!: ({ item }: { item: QuoraItem }) => void;
 
@@ -110,7 +117,11 @@ export default class QuoraPage extends Vue {
   }
 
   showModalHandle() {
+    debugger;
     this.showModal = false;
+    if (this.modeStatus === MODE_EDIT) {
+      (document.getElementById(this.modeReference.id) as HTMLElement).scrollIntoView();
+    }
   }
 }
 </script>
