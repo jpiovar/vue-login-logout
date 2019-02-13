@@ -102,11 +102,6 @@ export default class QuoraPage extends Vue {
     }
   }
 
-  // get ordered(): (items: QuoraItem[], way: string) => QuoraItem[] {
-  //   // return (items: QuoraItem[], way: string) => items.sort((a, b) => a.id > b.id ? -1 : 1);
-  //   return (items: QuoraItem[], way: string) => items;
-  // }
-
   get orderNewTop(): QuoraItem[] {
     return this.quoraItems.sort((a, b) => (a.id < b.id ? 1 : -1));
   }
@@ -125,16 +120,20 @@ export default class QuoraPage extends Vue {
   }
 
   scrollToRelevantItem(id: string) {
-    (document.getElementById(id) as HTMLElement).scrollIntoView();
+    const el = document.getElementById(id);
+    if (el) {
+      (el as HTMLElement).scrollIntoView();
+      (el.querySelector('textarea') as HTMLElement).focus();
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .btn-item {
-    float: right;
-    i {
-        font-size: 18px;
-    }
+  float: right;
+  i {
+      font-size: 18px;
+  }
 }
 </style>

@@ -11,14 +11,34 @@
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
-          @click="()=>editQuestion(itemData.id)"
-          v-if="userData.id===itemData.author.id">
+          @click="()=>editItem(itemData)"
+          v-if="userData.id===itemData.author.id && !isEditMode">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm btn-item"
+          @click="()=>saveItem()"
+          v-if="userData.id===itemData.author.id && isEditMode">
+            <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm btn-item"
+          @click="()=>cancelItem()"
+          v-if="userData.id===itemData.author.id && isEditMode">
+            <i class="fa fa-times" aria-hidden="true"></i>
         </button>
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
-        <span class="qa-text mb-3">{{itemData.text}}</span>
+        <span v-if="!isEditMode" class="qa-text mb-3">
+          {{itemData.text}}
+        </span>
+        <span v-if="isEditMode" class="qa-text mb-3">
+          <textarea
+            v-model="editedQuestionVal"
+            @keydown.enter.prevent="()=>modifyEditedQuestion(itemData.id)"
+            class="form-control"
+            aria-label="textarea" rows="1">
+          </textarea>
+        </span>
         <answer-item v-for="(item, index) in itemData.answers"
           :key="item.id"
           :index="index"
@@ -32,7 +52,9 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">New answer</span>
         </div>
-        <textarea v-model="newAnswerVal" @keydown.enter.prevent="()=>addNewAnswer(itemData.id)"
+        <textarea
+          v-model="newAnswerVal"
+          @keydown.enter.prevent="()=>addNewAnswer(itemData.id)"
           class="form-control"
           aria-label="textarea" rows="1">
         </textarea>
@@ -81,6 +103,8 @@ export default class QuoraCmp extends Vue {
 
   newAnswerVal: string = '';
 
+  editedQuestionVal: string = '';
+
   @UserStore.Getter userData!: UserData;
 
   @QuoraStore.Action removeQuestionStore!:
@@ -91,6 +115,14 @@ export default class QuoraCmp extends Vue {
 
   @ModeStore.Action setMode!:
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
+
+  @ModeStore.Getter modeStatus!: AppMode;
+
+  @ModeStore.Getter modeReference!: Reference;
+
+  get isEditMode(): boolean {
+    return this.modeStatus === MODE_EDIT && this.modeReference.id === this.itemData.id;
+  }
 
   get timeStamp(): string {
     debugger;
@@ -111,11 +143,26 @@ export default class QuoraCmp extends Vue {
     this.removeQuestionStore({ itemId });
   }
 
-  editQuestion(itemId: string) {
+  editItem(item: QuoraItem) {
     debugger;
-    this.scrollToElementPosition(itemId);
-    const reference = { id: itemId };
+    this.editedQuestionVal = item.text;
+    const reference = { id: item.id };
     const status = MODE_EDIT;
+    this.setMode({ reference, status });
+  }
+
+  saveItem() {
+    debugger;
+    const reference = { id: '' };
+    const status = MODE_READ;
+    this.setMode({ reference, status });
+    /* action for update item  */
+  }
+
+  cancelItem() {
+    debugger;
+    const reference = { id: '' };
+    const status = MODE_READ;
     this.setMode({ reference, status });
   }
 
@@ -132,15 +179,8 @@ export default class QuoraCmp extends Vue {
     }
   }
 
-  scrollToElementPosition(itemId: string) {
+  modifyEditedQuestion(qId: string) {
     debugger;
-    (this.$refs[this.itemData.id] as HTMLElement).scrollIntoView();
-
-    // const el: HTMLElement = this.$refs[this.itemData.id] as HTMLElement;
-    // window.scrollTo(0, el.offsetTop);
-
-    // const container: HTMLElement = document.getElementById(itemId) as HTMLElement;
-    // window.scrollTo(0, container.offsetTop);
   }
 }
 </script>
@@ -152,6 +192,7 @@ export default class QuoraCmp extends Vue {
 }
 .qa-text {
   display: inline-block;
+  width: 100%;
   margin: 10px 0;
   font-size: 20px;
 }
