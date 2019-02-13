@@ -120,8 +120,12 @@ export default class QuoraPage extends Vue {
     debugger;
     this.showModal = false;
     if (this.modeStatus === MODE_EDIT) {
-      (document.getElementById(this.modeReference.id) as HTMLElement).scrollIntoView();
+      this.scrollToRelevantItem(this.modeReference.id);
     }
+  }
+
+  scrollToRelevantItem(id: string) {
+    (document.getElementById(id) as HTMLElement).scrollIntoView();
   }
 }
 </script>

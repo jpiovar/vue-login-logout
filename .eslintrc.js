@@ -17,6 +17,7 @@ module.exports = {
     'eslint linebreak-style': [0, 'error', 'windows'],
     'allowForLoopAfterthoughts': true,
     'no-plusplus': 'off',
+    'class-methods-use-this': 'off',
   },
   parserOptions: {
     parser: 'typescript-eslint-parser',
