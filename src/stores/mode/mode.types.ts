@@ -1,4 +1,4 @@
-export type AppMode = 'initial'|'read'|'edit';
+export type AppMode = 'initial'|'read'|'edit'|'incomplete';
 
 export interface Reference {
     id: string;

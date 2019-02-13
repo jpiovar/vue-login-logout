@@ -12,26 +12,26 @@
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
           @click="()=>editItem(itemData)"
-          v-if="userData.id===itemData.author.id && !isEditMode">
+          v-if="userData.id===itemData.author.id && !isEditIncomplete">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
           @click="()=>saveItem()"
-          v-if="userData.id===itemData.author.id && isEditMode">
+          v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-check" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
           @click="()=>cancelItem()"
-          v-if="userData.id===itemData.author.id && isEditMode">
+          v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-times" aria-hidden="true"></i>
         </button>
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
-        <span v-if="!isEditMode" class="qa-text mb-3">
+        <span v-if="!isEditIncomplete" class="qa-text mb-3">
           {{itemData.text}}
         </span>
-        <span v-if="isEditMode" class="qa-text mb-3">
+        <span v-if="isEditIncomplete" class="qa-text mb-3">
           <textarea
             v-model="editedQuestionVal"
             @keydown.enter.prevent="()=>modifyEditedQuestion(itemData.id)"
@@ -77,7 +77,9 @@ import { UserData } from '../../../../stores/user/user.types';
 import AnswerItem from './components/AnswerItem.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
-import { MODE_EDIT, MODE_INITIAL, MODE_READ } from '../../../../stores/mode/constants';
+import {
+  MODE_EDIT, MODE_INITIAL, MODE_READ, MODE_INCOMPLETE,
+} from '../../../../stores/mode/constants';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
@@ -120,8 +122,9 @@ export default class QuoraCmp extends Vue {
 
   @ModeStore.Getter modeReference!: Reference;
 
-  get isEditMode(): boolean {
-    return this.modeStatus === MODE_EDIT && this.modeReference.id === this.itemData.id;
+  get isEditIncomplete(): boolean {
+    return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
+      && this.modeReference.id === this.itemData.id;
   }
 
   get timeStamp(): string {
@@ -147,7 +150,10 @@ export default class QuoraCmp extends Vue {
     debugger;
     this.editedQuestionVal = item.text;
     const reference = { id: item.id };
-    const status = MODE_EDIT;
+    let status = MODE_EDIT;
+    if (this.modeStatus === MODE_EDIT) {
+      status = MODE_INCOMPLETE;
+    }
     this.setMode({ reference, status });
   }
 

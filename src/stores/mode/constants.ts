@@ -7,3 +7,4 @@ export const REFERENCE_INITIAL = {
 export const MODE_INITIAL: AppMode = 'initial';
 export const MODE_READ: AppMode = 'read';
 export const MODE_EDIT: AppMode = 'edit';
+export const MODE_INCOMPLETE: AppMode = 'incomplete';
