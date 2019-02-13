@@ -2,6 +2,7 @@ import { AppMode } from './mode.types';
 
 export const REFERENCE_INITIAL = {
   id: '',
+  text: '',
 };
 
 export const MODE_INITIAL: AppMode = 'initial';

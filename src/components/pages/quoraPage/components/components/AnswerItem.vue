@@ -85,7 +85,7 @@ export default class AnswerItem extends Vue {
 
   editAnswer(itemId: string) {
     debugger;
-    const reference = { id: itemId };
+    const reference = { id: itemId, text: '' };
     const status = MODE_EDIT;
     this.setMode({ reference, status });
   }

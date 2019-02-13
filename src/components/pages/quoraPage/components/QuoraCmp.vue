@@ -148,23 +148,23 @@ export default class QuoraCmp extends Vue {
 
   editItem(item: QuoraItem) {
     debugger;
-    let reference: Reference = { id: '' };
+    let reference: Reference = { id: '', text: '' };
     let status: AppMode = MODE_READ;
     if (this.modeStatus === MODE_INITIAL || this.modeStatus === MODE_READ) {
       this.editedItem.text = item.text;
       this.editedItem.id = item.id;
       status = MODE_EDIT;
-      reference = { id: item.id };
+      reference = { id: item.id, text: item.text };
     } else if (this.modeStatus === MODE_EDIT) {
       status = MODE_INCOMPLETE;
-      reference = { id: this.editedItem.id };
+      reference = { id: this.modeReference.id, text: this.modeReference.text };
     }
     this.setMode({ reference, status });
   }
 
   saveItem() {
     debugger;
-    const reference = { id: '' };
+    const reference = { id: this.editedItem.id, text: this.editedItem.text };
     const status = MODE_READ;
     this.setMode({ reference, status });
     /* action for update item  */
@@ -172,7 +172,7 @@ export default class QuoraCmp extends Vue {
 
   cancelItem() {
     debugger;
-    const reference = { id: '' };
+    const reference = { id: this.modeReference.id, text: this.modeReference.text };
     const status = MODE_READ;
     this.setMode({ reference, status });
   }
