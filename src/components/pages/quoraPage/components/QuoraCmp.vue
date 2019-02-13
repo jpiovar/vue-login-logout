@@ -33,7 +33,7 @@
         </span>
         <span v-if="isEditIncomplete" class="qa-text mb-3">
           <textarea
-            v-model="editedQuestionVal"
+            v-model="editedItem.text"
             @keydown.enter.prevent="()=>modifyEditedQuestion(itemData.id)"
             class="form-control"
             aria-label="textarea" rows="1">
@@ -105,7 +105,7 @@ export default class QuoraCmp extends Vue {
 
   newAnswerVal: string = '';
 
-  editedQuestionVal: string = '';
+  editedItem = { id: '', text: '' };
 
   @UserStore.Getter userData!: UserData;
 
@@ -148,11 +148,16 @@ export default class QuoraCmp extends Vue {
 
   editItem(item: QuoraItem) {
     debugger;
-    this.editedQuestionVal = item.text;
-    const reference = { id: item.id };
-    let status = MODE_EDIT;
-    if (this.modeStatus === MODE_EDIT) {
+    let reference: Reference = { id: '' };
+    let status: AppMode = MODE_READ;
+    if (this.modeStatus === MODE_INITIAL || this.modeStatus === MODE_READ) {
+      this.editedItem.text = item.text;
+      this.editedItem.id = item.id;
+      status = MODE_EDIT;
+      reference = { id: item.id };
+    } else if (this.modeStatus === MODE_EDIT) {
       status = MODE_INCOMPLETE;
+      reference = { id: this.editedItem.id };
     }
     this.setMode({ reference, status });
   }
