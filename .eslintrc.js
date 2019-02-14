@@ -18,6 +18,7 @@ module.exports = {
     'allowForLoopAfterthoughts': true,
     'no-plusplus': 'off',
     'class-methods-use-this': 'off',
+    'max-len': 'off',
   },
   parserOptions: {
     parser: 'typescript-eslint-parser',
