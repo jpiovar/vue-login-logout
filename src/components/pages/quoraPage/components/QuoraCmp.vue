@@ -39,7 +39,7 @@
             aria-label="textarea" rows="1">
           </textarea>
         </span>
-        <answer-item v-for="(item, index) in itemData.answers"
+        <answer-cmp v-for="(item, index) in itemData.answers"
           :key="item.id"
           :index="index"
           :itemData="item"
@@ -74,7 +74,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { QUORA, USER, MODE } from '../../../../stores/constants';
 import { UserData } from '../../../../stores/user/user.types';
-import AnswerItem from './components/AnswerItem.vue';
+import AnswerCmp from './components/AnswerCmp.vue';
 import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 import {
@@ -87,7 +87,7 @@ const ModeStore = namespace(MODE);
 
 @Component({
   components: {
-    AnswerItem,
+    AnswerCmp,
   },
   props: {
     index: {

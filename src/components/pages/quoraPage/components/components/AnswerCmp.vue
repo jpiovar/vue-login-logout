@@ -54,7 +54,7 @@ const ModeStore = namespace(MODE);
     },
   },
 })
-export default class AnswerItem extends Vue {
+export default class AnswerCmp extends Vue {
   itemData!: Answer;
 
   @UserStore.Getter userData!: UserData;
