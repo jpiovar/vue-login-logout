@@ -33,6 +33,19 @@ const actions: ActionTree<QuoraStore, RootState> = {
     data.splice(qIndex, 1);
     commit('storeQuoraData', data);
   },
+  updateQuestionStore({ commit, state }:
+    ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string}) {
+    debugger;
+    const data: QuoraItem[] = state.quoraItems;
+    const qIndex: number = data.reduce((res, item, index) => {
+      if (item.id === qId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    data[qIndex].text = text;
+    commit('storeQuoraData', data);
+  },
   addNewAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, item }: { qId: string, item: QuoraItem }) {
     debugger;

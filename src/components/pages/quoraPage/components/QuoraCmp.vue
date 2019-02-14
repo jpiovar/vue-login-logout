@@ -21,7 +21,7 @@
             <i class="fa fa-times" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
-          @click="()=>saveItem()"
+          @click="saveItem"
           v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-check" aria-hidden="true"></i>
         </button>
@@ -34,7 +34,7 @@
         <span v-if="isEditIncomplete" class="qa-text mb-3">
           <textarea
             v-model="editedItem.text"
-            @keydown.enter.prevent="()=>modifyEditedQuestion(itemData.id)"
+            @keydown.enter.prevent="()=>saveItem()"
             class="form-control"
             aria-label="textarea" rows="1">
           </textarea>
@@ -115,6 +115,8 @@ export default class QuoraCmp extends Vue {
   @QuoraStore.Action addNewAnswerStore!:
     ({ qId, item }: { qId: string, item: Answer }) => void;
 
+  @QuoraStore.Action updateQuestionStore!: ({ qId, text }: { qId: string, text: string }) => void;
+
   @ModeStore.Action setMode!:
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
 
@@ -166,9 +168,10 @@ export default class QuoraCmp extends Vue {
   saveItem() {
     debugger;
     const status = MODE_READ;
-    const reference = { id: this.editedItem.id, text: this.editedItem.text };
+    const reference = { id: '', text: '' };
     this.setMode({ reference, status });
-    /* action for update item  */
+    const { id, text } = this.editedItem;
+    this.updateQuestionStore({ qId: id, text });
   }
 
   cancelItem() {
@@ -189,10 +192,6 @@ export default class QuoraCmp extends Vue {
       this.newAnswerVal = '';
       this.addNewAnswerStore({ qId, item });
     }
-  }
-
-  modifyEditedQuestion(qId: string) {
-    debugger;
   }
 }
 </script>
