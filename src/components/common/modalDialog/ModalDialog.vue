@@ -26,10 +26,6 @@ export default class ModalDialog extends Vue {
   @ModeStore.Action setMode!:
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
 
-  created() {
-    debugger;
-  }
-
   showModalHandle() {
     debugger;
     if (this.modeStatus === MODE_INCOMPLETE) {

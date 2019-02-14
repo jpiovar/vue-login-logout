@@ -6,12 +6,12 @@
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
         <button type="button" class="btn btn-danger btn-sm border-dark btn-item"
-          @click="()=>removeAnswer(itemData.id, qId)"
+          @click="()=>removeItem(itemData.id, qId)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm border-dark btn-item"
-          @click="()=>editAnswer(itemData.id)"
+          @click="()=>editItem(itemData.id)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
@@ -78,12 +78,12 @@ export default class AnswerCmp extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  removeAnswer(itemId: string, qId: string) {
+  removeItem(itemId: string, qId: string) {
     debugger;
     this.removeAnswerStore({ itemId, qId });
   }
 
-  editAnswer(itemId: string) {
+  editItem(itemId: string) {
     debugger;
     const reference = { id: itemId, text: '' };
     const status = MODE_EDIT;

@@ -144,10 +144,12 @@ export default class QuoraCmp extends Vue {
   }
 
   removeItem(itemId: string) {
-    const status = MODE_READ;
-    const reference = { id: '', text: '' };
     this.removeQuestionStore({ itemId });
-    this.setMode({ reference, status });
+    if (itemId === this.modeReference.id) {
+      const status = MODE_READ;
+      const reference = { id: '', text: '' };
+      this.setMode({ reference, status });
+    }
   }
 
   editItem(item: QuoraItem) {
