@@ -16,14 +16,14 @@
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
         <button type="button" class="btn btn-light btn-sm btn-item"
-          @click="()=>saveItem()"
-          v-if="userData.id===itemData.author.id && isEditIncomplete">
-            <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-light btn-sm btn-item"
           @click="()=>cancelItem()"
           v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="btn btn-light btn-sm btn-item"
+          @click="()=>saveItem()"
+          v-if="userData.id===itemData.author.id && isEditIncomplete">
+            <i class="fa fa-check" aria-hidden="true"></i>
         </button>
     </div>
     <div class="card-body bg-light text-dark">
@@ -143,13 +143,16 @@ export default class QuoraCmp extends Vue {
 
   removeQuestion(itemId: string) {
     debugger;
+    const status = MODE_READ;
+    const reference = { id: '', text: '' };
     this.removeQuestionStore({ itemId });
+    this.setMode({ reference, status });
   }
 
   editItem(item: QuoraItem) {
     debugger;
-    let status: AppMode = MODE_EDIT;
-    let reference: Reference = { id: item.id, text: item.text };
+    let status = MODE_EDIT;
+    let reference = { id: item.id, text: item.text };
     if (this.modeStatus === MODE_INITIAL || this.modeStatus === MODE_READ) {
       this.editedItem = { id: item.id, text: item.text };
     } else if (this.modeStatus === MODE_EDIT) {

@@ -33,7 +33,7 @@
           :userName="userProfile.name"
           :userEmail="userProfile.email"
         />
-        <info-dialog v-if="showModal" :showModalRef="showModalHandle"/>
+        <modal-dialog />
         <button class="btn btn-primary" @click="showModal=true">Show modal</button>
       </div>
     </div>
@@ -49,7 +49,7 @@ import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
 import QuoraCmp from './components/QuoraCmp.vue';
 import UserInfo from './components/UserInfo.vue';
-import InfoDialog from '@/components/common/InfoDialog.vue';
+import ModalDialog from '../../common/modalDialog/ModalDialog.vue';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 
 const UserStore = namespace(USER);
@@ -60,7 +60,7 @@ const ModeStore = namespace(MODE);
   components: {
     QuoraCmp,
     UserInfo,
-    InfoDialog,
+    ModalDialog,
   },
   props: {},
 })
@@ -109,22 +109,6 @@ export default class QuoraPage extends Vue {
   get userProfile() {
     const { name, email } = this.userData;
     return { name, email };
-  }
-
-  showModalHandle() {
-    debugger;
-    this.showModal = false;
-    if (this.modeStatus === MODE_EDIT) {
-      this.scrollToRelevantItem(this.modeReference.id);
-    }
-  }
-
-  scrollToRelevantItem(id: string) {
-    const el = document.getElementById(id);
-    if (el) {
-      (el as HTMLElement).scrollIntoView();
-      (el.querySelector('textarea') as HTMLElement).focus();
-    }
   }
 }
 </script>

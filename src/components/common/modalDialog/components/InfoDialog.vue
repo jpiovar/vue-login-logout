@@ -9,14 +9,17 @@
         </h4>
       </div>
       <div class="modal-body">
-        Please save or cancel changes for input you edited.
+        Please
+        <button type="button" class="btn btn-light btn-sm btn-item">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button> save or
+        <button type="button" class="btn btn-light btn-sm btn-item">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button> cancel changes for input you edited.
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success" @click="hideModal">
-          <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
-        </button>
-        <button class="btn btn-warning" @click="hideModal">
-          <i class="fa fa-times" aria-hidden="true"></i> Cancel
+        <button class="btn btn-info" @click="hideModal">
+          Close dialog
         </button>
       </div>
     </div>
@@ -54,11 +57,6 @@ export default class InfoDialog extends Vue {
   @ModeStore.Getter modeStatus!: AppMode;
 
   @ModeStore.Getter modeReference!: Reference;
-
-  get appModeStatus(): string {
-    debugger;
-    return `${this.modeStatus} ooo`;
-  }
 
   hideModal() {
     debugger;
