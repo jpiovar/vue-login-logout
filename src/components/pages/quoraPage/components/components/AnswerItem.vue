@@ -5,12 +5,12 @@
           <b>{{ `A ${index + 1}. &nbsp;` }}</b>
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
-        <button type="button" class="btn btn-danger btn-sm btn-item"
+        <button type="button" class="btn btn-danger btn-sm border-dark btn-item"
           @click="()=>removeAnswer(itemData.id, qId)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item"
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
           @click="()=>editAnswer(itemData.id)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

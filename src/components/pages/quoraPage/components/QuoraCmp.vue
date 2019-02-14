@@ -5,22 +5,22 @@
           <b>{{ `Q ${index + 1}. &nbsp;` }}</b>
           {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
         </span>
-        <button type="button" class="btn btn-danger btn-sm btn-item"
-          @click="()=>removeQuestion(itemData.id)"
+        <button type="button" class="btn btn-danger btn-sm border-dark btn-item"
+          @click="()=>removeItem(itemData.id)"
           v-if="userData.id===itemData.author.id">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item"
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
           @click="()=>editItem(itemData)"
           v-if="userData.id===itemData.author.id && !isEditIncomplete">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item"
-          @click="()=>cancelItem()"
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
+          @click="cancelItem"
           v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-times" aria-hidden="true"></i>
         </button>
-        <button type="button" class="btn btn-light btn-sm btn-item"
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
           @click="saveItem"
           v-if="userData.id===itemData.author.id && isEditIncomplete">
             <i class="fa fa-check" aria-hidden="true"></i>
@@ -143,7 +143,7 @@ export default class QuoraCmp extends Vue {
     return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
   }
 
-  removeQuestion(itemId: string) {
+  removeItem(itemId: string) {
     const status = MODE_READ;
     const reference = { id: '', text: '' };
     this.removeQuestionStore({ itemId });
