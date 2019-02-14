@@ -33,8 +33,7 @@
           :userName="userProfile.name"
           :userEmail="userProfile.email"
         />
-        <modal-dialog />
-        <button class="btn btn-primary" @click="showModal=true">Show modal</button>
+        <modal-dialog/>
       </div>
     </div>
   </div>
@@ -66,8 +65,6 @@ const ModeStore = namespace(MODE);
 })
 export default class QuoraPage extends Vue {
   newQuestionVal: string = '';
-
-  showModal: boolean = false;
 
   @UserStore.Action logoutUser!: () => void;
 

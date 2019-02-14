@@ -142,7 +142,6 @@ export default class QuoraCmp extends Vue {
   }
 
   removeQuestion(itemId: string) {
-    debugger;
     const status = MODE_READ;
     const reference = { id: '', text: '' };
     this.removeQuestionStore({ itemId });
@@ -175,7 +174,7 @@ export default class QuoraCmp extends Vue {
   cancelItem() {
     debugger;
     const status = MODE_READ;
-    const reference = { id: this.modeReference.id, text: this.modeReference.text };
+    const reference = { id: '', text: '' };
     this.setMode({ reference, status });
   }
 
