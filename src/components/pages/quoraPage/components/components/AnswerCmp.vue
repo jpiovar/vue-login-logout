@@ -178,4 +178,10 @@ export default class AnswerCmp extends Vue {
     font-size: 18px;
   }
 }
+textarea:focus {
+  border-color: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: -webkit-focus-ring-color auto 5px;
+}
 </style>
