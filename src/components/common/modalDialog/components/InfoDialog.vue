@@ -10,10 +10,10 @@
       </div>
       <div class="modal-body">
         Please
-        <button type="button" class="btn btn-light btn-sm btn-item">
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item">
           <i class="fa fa-check" aria-hidden="true"></i>
         </button> save or
-        <button type="button" class="btn btn-light btn-sm btn-item">
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item">
           <i class="fa fa-times" aria-hidden="true"></i>
         </button> cancel changes for input you edited.
       </div>

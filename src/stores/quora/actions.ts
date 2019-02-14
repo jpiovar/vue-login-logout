@@ -1,6 +1,6 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
-import { QuoraStore, QuoraItem, Answer } from './quora.types';
+import { QuoraStore, QuoraItem, AnswerItem } from './quora.types';
 
 const actions: ActionTree<QuoraStore, RootState> = {
   storeQuoraData({ commit }:

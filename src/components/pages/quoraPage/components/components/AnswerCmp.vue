@@ -29,7 +29,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { QUORA, USER, MODE } from '../../../../../stores/constants';
 import { UserData } from '../../../../../stores/user/user.types';
-import { Answer } from '../../../../../stores/quora/quora.types';
+import { AnswerItem } from '../../../../../stores/quora/quora.types';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 import { MODE_EDIT } from '@/stores/mode/constants';
 
@@ -55,7 +55,7 @@ const ModeStore = namespace(MODE);
   },
 })
 export default class AnswerCmp extends Vue {
-  itemData!: Answer;
+  itemData!: AnswerItem;
 
   @UserStore.Getter userData!: UserData;
 

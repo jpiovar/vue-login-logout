@@ -75,7 +75,7 @@ import { namespace } from 'vuex-class';
 import { QUORA, USER, MODE } from '../../../../stores/constants';
 import { UserData } from '../../../../stores/user/user.types';
 import AnswerCmp from './components/AnswerCmp.vue';
-import { QuoraItem, Answer } from '../../../../stores/quora/quora.types';
+import { QuoraItem, AnswerItem } from '../../../../stores/quora/quora.types';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 import {
   MODE_EDIT, MODE_INITIAL, MODE_READ, MODE_INCOMPLETE,
@@ -113,7 +113,7 @@ export default class QuoraCmp extends Vue {
     ({ itemId }: { itemId: string }) => void;
 
   @QuoraStore.Action addNewAnswerStore!:
-    ({ qId, item }: { qId: string, item: Answer }) => void;
+    ({ qId, item }: { qId: string, item: AnswerItem }) => void;
 
   @QuoraStore.Action updateQuestionStore!: ({ qId, text }: { qId: string, text: string }) => void;
 
