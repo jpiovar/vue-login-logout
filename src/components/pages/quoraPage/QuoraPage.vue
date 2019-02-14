@@ -49,7 +49,7 @@ import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
 import QuoraCmp from './components/QuoraCmp.vue';
 import UserInfo from './components/UserInfo.vue';
-import InfoDialog from './components/InfoDialog.vue';
+import InfoDialog from '@/components/common/InfoDialog.vue';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 
 const UserStore = namespace(USER);
