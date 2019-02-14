@@ -7,8 +7,8 @@
         <br/>Email: {{ userEmail }}
       </p>
       <a href="#" class="btn btn-primary" @click="userLogout">Logout</a>
-      <hr class="mt-3 mb-3">
-      <p class="mt-3 mb-0 text-center">
+      <hr class="mt-5 mb-3">
+      <p class="mt-5 mb-0 text-center">
         <sup>*</sup>You are allowed to<br/>
         <button type="button" class="btn btn-light btn-sm border-dark btn-item">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
