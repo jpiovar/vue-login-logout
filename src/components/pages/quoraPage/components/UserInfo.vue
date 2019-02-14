@@ -7,8 +7,15 @@
         <br/>Email: {{ userEmail }}
       </p>
       <a href="#" class="btn btn-primary" @click="userLogout">Logout</a>
-      <p class="mt-3 text-left">
-        <sup>*</sup>You can edit / remove only your Quora items.
+      <hr class="mt-3 mb-3">
+      <p class="mt-3 mb-0 text-center">
+        <sup>*</sup>You are allowed to<br/>
+        <button type="button" class="btn btn-light btn-sm border-dark btn-item">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button> edit or
+        <button type="button" class="btn btn-danger btn-sm border-dark btn-item">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button> remove only your Quora items.
       </p>
     </div>
   </div>

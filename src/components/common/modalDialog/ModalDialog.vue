@@ -1,8 +1,5 @@
 <template>
-    <div>
-        <p>oppooo</p>
-        <info-dialog v-if="showModal" :showModalRef="showModalHandle"/>
-    </div>
+  <info-dialog v-if="showModal" :showModalRef="showModalHandle"/>
 </template>
 
 <script lang="ts">
