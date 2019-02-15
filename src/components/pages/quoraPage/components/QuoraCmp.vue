@@ -13,6 +13,7 @@
         <card-body-text
           :itemData="itemData"
           :editedItem="editedItem"
+          :saveItemRef="saveItemHandle"
         />
         <answer-cmp v-for="(item, index) in itemData.answers"
           :key="item.id"
@@ -104,7 +105,7 @@ export default class QuoraCmp extends Vue {
     }
   }
 
-  saveItem() {
+  saveItemHandle() {
     (this.$refs.cardHeader as any).saveItem();
   }
 }

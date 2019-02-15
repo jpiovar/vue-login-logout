@@ -37,10 +37,16 @@ const ModeStore = namespace(MODE);
       required: true,
       type: Object,
     },
+    saveItemRef: {
+      required: true,
+      type: Function,
+    },
   },
 })
 export default class CardBodyText extends Vue {
   itemData!: QuoraItem|AnswerItem;
+
+  saveItemRef!: any;
 
   editedItem!: { id: string, text: string };
 
@@ -51,6 +57,10 @@ export default class CardBodyText extends Vue {
   get isEditIncomplete(): boolean {
     return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
       && this.modeReference.id === this.itemData.id;
+  }
+
+  saveItem() {
+    this.saveItemRef();
   }
 }
 </script>

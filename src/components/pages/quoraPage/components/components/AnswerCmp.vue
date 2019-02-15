@@ -14,6 +14,7 @@
         <card-body-text
           :itemData="itemData"
           :editedItem="editedItem"
+          :saveItemRef="saveItemHandle"
         />
       </p>
     </div>
@@ -58,7 +59,7 @@ export default class AnswerCmp extends Vue {
     this.editedItem = { id, text };
   }
 
-  saveItem() {
+  saveItemHandle() {
     (this.$refs.cardHeader as any).saveItem();
   }
 }
