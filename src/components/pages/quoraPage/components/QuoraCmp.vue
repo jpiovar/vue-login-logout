@@ -1,30 +1,7 @@
 <template>
   <div class="card text-white bg-primary p-1 mb-4" :id="itemData.id" :ref="itemData.id">
     <div class="card-header">
-        <span class="qa-header">
-          <b>{{ `Q ${index + 1}. &nbsp;` }}</b>
-          {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
-        </span>
-        <button type="button" class="btn btn-danger btn-sm border-dark btn-item"
-          @click="()=>removeItem(itemData.id)"
-          v-if="userData.id===itemData.author.id">
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
-          @click="()=>editItem(itemData)"
-          v-if="userData.id===itemData.author.id && !isEditIncomplete">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
-          @click="cancelItem"
-          v-if="userData.id===itemData.author.id && isEditIncomplete">
-            <i class="fa fa-times" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="btn btn-light btn-sm border-dark btn-item"
-          @click="saveItem"
-          v-if="userData.id===itemData.author.id && isEditIncomplete">
-            <i class="fa fa-check" aria-hidden="true"></i>
-        </button>
+      <card-header :index="index" :itemData="itemData" :editedItem="editedItem" :editedItemRef="editedItemHandle"/>
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
@@ -80,6 +57,7 @@ import { AppMode, Reference } from '@/stores/mode/mode.types';
 import {
   MODE_EDIT, MODE_INITIAL, MODE_READ, MODE_INCOMPLETE,
 } from '../../../../stores/mode/constants';
+import CardHeader from '../../../common/cardHeader/CardHeader.vue';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
@@ -88,6 +66,7 @@ const ModeStore = namespace(MODE);
 @Component({
   components: {
     AnswerCmp,
+    CardHeader,
   },
   props: {
     index: {
@@ -124,63 +103,14 @@ export default class QuoraCmp extends Vue {
 
   @ModeStore.Getter modeReference!: Reference;
 
+  editedItemHandle({ id, text }: { id: string, text: string }) {
+    debugger;
+    this.editedItem = { id, text };
+  }
+
   get isEditIncomplete(): boolean {
     return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
       && this.modeReference.id === this.itemData.id;
-  }
-
-  get timeStamp(): string {
-    debugger;
-    const date = new Date(Number(this.itemData.id));
-    const dVal = {
-      year: date.getFullYear(),
-      month: `0${(Number(date.getMonth()) + 1)}`.slice(-2),
-      day: `0${date.getDate()}`.slice(-2),
-      hour: `0${date.getHours()}`.slice(-2),
-      minute: `0${date.getMinutes()}`.slice(-2),
-      second: `0${date.getSeconds()}`.slice(-2),
-    };
-    return `${dVal.year}-${dVal.month}-${dVal.day} ${dVal.hour}:${dVal.minute}:${dVal.second}`;
-  }
-
-  removeItem(itemId: string) {
-    this.removeQuestionStore({ itemId });
-    if (itemId === this.modeReference.id) {
-      const status = MODE_READ;
-      const reference = { id: '', text: '' };
-      this.setMode({ reference, status });
-    }
-  }
-
-  editItem(item: QuoraItem) {
-    debugger;
-    let status = MODE_EDIT;
-    let reference = { id: item.id, text: item.text };
-    if (this.modeStatus === MODE_INITIAL || this.modeStatus === MODE_READ) {
-      this.editedItem = { id: item.id, text: item.text };
-    } else if (this.modeStatus === MODE_EDIT) {
-      status = MODE_INCOMPLETE;
-      reference = { id: this.modeReference.id, text: this.modeReference.text };
-    } else if (this.modeStatus === MODE_INCOMPLETE) {
-      return;
-    }
-    this.setMode({ reference, status });
-  }
-
-  saveItem() {
-    debugger;
-    const status = MODE_READ;
-    const reference = { id: '', text: '' };
-    this.setMode({ reference, status });
-    const { id, text } = this.editedItem;
-    this.updateQuestionStore({ qId: id, text });
-  }
-
-  cancelItem() {
-    debugger;
-    const status = MODE_READ;
-    const reference = { id: '', text: '' };
-    this.setMode({ reference, status });
   }
 
   addNewAnswer(qId: string) {

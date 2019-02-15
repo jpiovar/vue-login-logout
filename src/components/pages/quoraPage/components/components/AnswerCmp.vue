@@ -33,7 +33,7 @@
         </span>
         <span v-if="isEditIncomplete" class="qa-text mb-3">
           <textarea
-            v-model="editedItem.text"
+            v-model="editedItemText"
             @keydown.enter.prevent="()=>saveItem()"
             class="form-control"
             aria-label="textarea" rows="1">
@@ -97,6 +97,16 @@ export default class AnswerCmp extends Vue {
   @ModeStore.Getter modeStatus!: AppMode;
 
   @ModeStore.Getter modeReference!: Reference;
+
+  get editedItemText(): string {
+    debugger;
+    return this.editedItem.text;
+  }
+
+  set editedItemText(val: string) {
+    debugger;
+    this.editedItem.text = val;
+  }
 
   get isEditIncomplete(): boolean {
     return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
