@@ -1,7 +1,11 @@
 <template>
   <div class="card text-white bg-primary p-1 mb-4" :id="itemData.id" :ref="itemData.id">
     <div class="card-header">
-      <card-header :index="index" :itemData="itemData" :editedItem="editedItem" :editedItemRef="editedItemHandle"/>
+      <card-header
+        :index="index"
+        :itemData="itemData"
+        :editedItem="editedItem" :editedItemRef="editedItemHandle"
+      />
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">

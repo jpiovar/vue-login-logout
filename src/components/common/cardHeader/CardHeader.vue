@@ -7,7 +7,7 @@
     <button
       type="button"
       class="btn btn-danger btn-sm border-dark btn-item"
-      @click="()=>removeItem(itemData.id)"
+      @click="()=>removeItem(itemData.id, qId)"
       v-if="userData.id===itemData.author.id">
       <i class="fa fa-trash-o" aria-hidden="true"></i>
     </button>
@@ -69,10 +69,16 @@ const ModeStore = namespace(MODE);
       required: true,
       type: Function,
     },
+    qId: {
+      required: false,
+      type: String,
+    },
   },
 })
 export default class CardHeader extends Vue {
   itemData!: QuoraItem;
+
+  qId!: string;
 
   editedItem!: { id: string, text: string };
 
@@ -83,7 +89,13 @@ export default class CardHeader extends Vue {
   @QuoraStore.Action removeQuestionStore!:
     ({ itemId }: { itemId: string }) => void;
 
+  @QuoraStore.Action removeAnswerStore!:
+    ({ itemId, qId }: { itemId: string, qId: string }) => void;
+
   @QuoraStore.Action updateQuestionStore!: ({ qId, text }: { qId: string, text: string }) => void;
+
+  @QuoraStore.Action updateAnswerStore!:
+    ({ aId, text, qId }: { aId: string, text: string, qId: string }) => void;
 
   @ModeStore.Action setMode!:
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
@@ -111,8 +123,13 @@ export default class CardHeader extends Vue {
       && this.modeReference.id === this.itemData.id;
   }
 
-  removeItem(itemId: string) {
-    this.removeQuestionStore({ itemId });
+  removeItem(itemId: string, qId: string) {
+    debugger;
+    if (qId) {
+      this.removeAnswerStore({ itemId, qId });
+    } else {
+      this.removeQuestionStore({ itemId });
+    }
     if (itemId === this.modeReference.id) {
       const status = MODE_READ;
       const reference = { id: '', text: '' };
@@ -120,7 +137,7 @@ export default class CardHeader extends Vue {
     }
   }
 
-  editItem(item: QuoraItem) {
+  editItem(item: QuoraItem|AnswerItem) {
     debugger;
     let status = MODE_EDIT;
     let reference = { id: item.id, text: item.text };
@@ -141,7 +158,12 @@ export default class CardHeader extends Vue {
     const reference = { id: '', text: '' };
     this.setMode({ reference, status });
     const { id, text } = this.editedItem;
-    this.updateQuestionStore({ qId: id, text });
+    const { qId } = this;
+    if (qId) {
+      this.updateAnswerStore({ aId: id, text, qId });
+    } else {
+      this.updateQuestionStore({ qId: id, text });
+    }
   }
 
   cancelItem() {
