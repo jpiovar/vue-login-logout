@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="qa-header">
-      <b>{{ `Q ${index + 1}. &nbsp;` }}</b>
+      <b>{{ `${qId ? 'A' : 'Q'} ${index + 1}. &nbsp;` }}</b>
       {{ `${itemData.author.name} / ${itemData.author.email} &nbsp; ${timeStamp}` }}
     </span>
     <button

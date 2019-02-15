@@ -29,7 +29,7 @@
       </div>
       <div class="col-md-3">
         <user-info
-          :logoutHandler="logout"
+          :logoutRef="logout"
           :userName="userProfile.name"
           :userEmail="userProfile.email"
         />
@@ -43,7 +43,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import { USER, QUORA, MODE } from '../../../stores/constants';
-import { MODE_EDIT } from '@/stores/mode/constants';
+import { MODE_EDIT, MODE_READ } from '@/stores/mode/constants';
 import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
 import QuoraCmp from './components/QuoraCmp.vue';
@@ -80,10 +80,16 @@ export default class QuoraPage extends Vue {
 
   @QuoraStore.Action destroyQuoraData!: () => void;
 
+  @ModeStore.Action setMode!:
+    ({ reference, status }: { reference: Reference, status: AppMode }) => void;
+
   logout() {
     console.log('logout clicked');
     this.logoutUser();
-    // this.destroyQuoraData();
+    const status = MODE_READ;
+    const reference = { id: '', text: '' };
+    this.setMode({ reference, status });
+    this.destroyQuoraData();
   }
 
   addNewQuestion() {

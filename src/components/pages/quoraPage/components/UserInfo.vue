@@ -28,7 +28,7 @@ import { namespace } from 'vuex-class';
 @Component({
   components: {},
   props: {
-    logoutHandler: {
+    logoutRef: {
       type: Function,
       required: true,
     },
@@ -47,7 +47,7 @@ import { namespace } from 'vuex-class';
   },
 })
 export default class UserInfo extends Vue {
-  logoutHandler!: any;
+  logoutRef!: any;
 
   msg!: string;
 
@@ -56,7 +56,7 @@ export default class UserInfo extends Vue {
   userEmail!: string;
 
   userLogout() {
-    this.logoutHandler();
+    this.logoutRef();
   }
 }
 </script>
