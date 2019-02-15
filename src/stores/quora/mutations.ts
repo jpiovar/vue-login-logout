@@ -5,13 +5,16 @@ import {
 } from './constants';
 
 const mutations: MutationTree<QuoraStore> = {
-  storeQuoraData(state: QuoraStore, data: QuoraItem) {
-    debugger;
+  storeQuoraData(state: QuoraStore, data: QuoraItem[]) {
     const newState = {
       quoraItems: data,
       quoraStatus: QUORA_STATUS_LOADED,
     };
     Object.assign(state, newState);
+  },
+  destroyQuoraData(state: QuoraStore, data: QuoraItem[]) {
+    state.quoraItems = data;
+    state.quoraStatus = QUORA_STATUS_INITIAL;
   },
 };
 

@@ -19,6 +19,7 @@ module.exports = {
     'no-plusplus': 'off',
     'class-methods-use-this': 'off',
     'max-len': 'off',
+    'no-param-reassign': ['error',  { 'props': true, 'ignorePropertyModificationsFor': ['state'] }],
   },
   parserOptions: {
     parser: 'typescript-eslint-parser',

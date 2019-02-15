@@ -10,7 +10,8 @@ const actions: ActionTree<QuoraStore, RootState> = {
   destroyQuoraData({ commit }:
     ActionContext<QuoraStore, RootState>) {
     const data: QuoraItem[] = [];
-    commit('storeQuoraData', data);
+    // commit('storeQuoraData', data);
+    commit('destroyQuoraData', data);
   },
   addNewQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { item }: { item: QuoraItem }) {
