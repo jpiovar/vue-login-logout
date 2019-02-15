@@ -5,6 +5,7 @@
         :index="index"
         :itemData="itemData"
         :editedItem="editedItem" :editedItemRef="editedItemHandle"
+        ref="cardHeader"
       />
     </div>
     <div class="card-body bg-light text-dark">
@@ -128,6 +129,10 @@ export default class QuoraCmp extends Vue {
       this.newAnswerVal = '';
       this.addNewAnswerStore({ qId, item });
     }
+  }
+
+  saveItem() {
+    (this.$refs.cardHeader as any).saveItem();
   }
 }
 </script>

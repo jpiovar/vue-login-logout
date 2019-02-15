@@ -6,6 +6,7 @@
         :itemData="itemData"
         :editedItem="editedItem" :editedItemRef="editedItemHandle"
         :qId="qId"
+        ref="cardHeader"
       />
     </div>
     <div class="card-body bg-light text-dark">
@@ -85,6 +86,10 @@ export default class AnswerCmp extends Vue {
   get isEditIncomplete(): boolean {
     return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
       && this.modeReference.id === this.itemData.id;
+  }
+
+  saveItem() {
+    (this.$refs.cardHeader as any).saveItem();
   }
 }
 </script>
