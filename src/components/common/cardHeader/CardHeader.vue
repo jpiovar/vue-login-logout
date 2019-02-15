@@ -123,6 +123,22 @@ export default class CardHeader extends Vue {
       && this.modeReference.id === this.itemData.id;
   }
 
+  editedIdCoveredByRemovedId(itemId: string, referenceId: string): boolean {
+    debugger;
+    let res = false;
+    if (this.itemData && this.itemData.answers) {
+      for (let i = 0; i < this.itemData.answers.length; i++) {
+        if (this.itemData.answers[i].id === referenceId) {
+          res = true;
+          break;
+        }
+      }
+    } else if (itemId === referenceId) {
+      res = true;
+    }
+    return res;
+  }
+
   removeItem(itemId: string, qId: string) {
     debugger;
     if (qId) {
@@ -130,7 +146,7 @@ export default class CardHeader extends Vue {
     } else {
       this.removeQuestionStore({ itemId });
     }
-    if (itemId === this.modeReference.id) {
+    if (this.editedIdCoveredByRemovedId(itemId, this.modeReference.id)) {
       const status = MODE_READ;
       const reference = { id: '', text: '' };
       this.setMode({ reference, status });
