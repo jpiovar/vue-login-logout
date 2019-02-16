@@ -60,6 +60,7 @@ export default class LoginForm extends Vue {
 
   loginForm() {
     this.loginRef({ name: this.userNameVal, password: this.passwordVal });
+    // this.userNameValGS = `name ${this.userNameValGS}` ;
   }
 
   showAlertBannerAndReset() {
@@ -83,6 +84,16 @@ export default class LoginForm extends Vue {
 
   setFocusInput() {
     (this.$refs.userName as HTMLFormElement).focus();
+  }
+
+  get userNameValGS(): string {
+    debugger;
+    return this.userNameVal;
+  }
+
+  set userNameValGS(val: string) {
+    debugger;
+    this.userNameVal = val;
   }
 }
 </script>
