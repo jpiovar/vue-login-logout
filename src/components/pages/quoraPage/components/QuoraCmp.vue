@@ -10,7 +10,6 @@
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
-        <span>{{ et.text }}</span>
         <card-body-text
           :itemData="itemData"
           :editedItemBody="editedItem"
@@ -87,11 +86,6 @@ export default class QuoraCmp extends Vue {
 
   @QuoraStore.Action addNewAnswerStore!:
     ({ qId, item }: { qId: string, item: AnswerItem }) => void;
-
-  get et(): Object {
-    debugger;
-    return this.editedItem;
-  }
 
   editedItemHandle({ id, text }: { id: string, text: string }) {
     debugger;
