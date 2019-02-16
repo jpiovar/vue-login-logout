@@ -5,7 +5,7 @@
     </span>
     <span v-if="isEditIncomplete" class="qa-text mb-3">
       <textarea
-        v-model="editedItem.text"
+        v-model="editedItemBody.text"
         @keydown.enter.prevent="()=>saveItem()"
         class="form-control"
         aria-label="textarea" rows="1">
@@ -33,7 +33,7 @@ const ModeStore = namespace(MODE);
       required: true,
       type: Object,
     },
-    editedItem: {
+    editedItemBody: {
       required: true,
       type: Object,
     },
@@ -48,7 +48,7 @@ export default class CardBodyText extends Vue {
 
   saveItemRef!: any;
 
-  editedItem!: { id: string, text: string };
+  editedItemBody!: { id: string, text: string };
 
   @ModeStore.Getter modeStatus!: AppMode;
 

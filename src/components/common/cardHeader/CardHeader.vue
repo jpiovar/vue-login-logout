@@ -61,7 +61,7 @@ const ModeStore = namespace(MODE);
       required: true,
       type: Object,
     },
-    editedItem: {
+    editedItemHeader: {
       required: true,
       type: Object,
     },
@@ -80,7 +80,7 @@ export default class CardHeader extends Vue {
 
   qId!: string;
 
-  editedItem!: { id: string, text: string };
+  editedItemHeader!: { id: string, text: string };
 
   editedItemRef!: any;
 
@@ -173,7 +173,7 @@ export default class CardHeader extends Vue {
     const status = MODE_READ;
     const reference = { id: '', text: '' };
     this.setMode({ reference, status });
-    const { id, text } = this.editedItem;
+    const { id, text } = this.editedItemHeader;
     const { qId } = this;
     if (qId) {
       this.updateAnswerStore({ aId: id, text, qId });

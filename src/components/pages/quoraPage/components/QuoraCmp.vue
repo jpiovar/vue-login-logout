@@ -4,15 +4,16 @@
       <card-header
         :index="index"
         :itemData="itemData"
-        :editedItem="editedItem" :editedItemRef="editedItemHandle"
+        :editedItemHeader="editedItem" :editedItemRef="editedItemHandle"
         ref="cardHeader"
       />
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
+        <span>{{ et.text }}</span>
         <card-body-text
           :itemData="itemData"
-          :editedItem="editedItem"
+          :editedItemBody="editedItem"
           :saveItemRef="saveItemHandle"
         />
         <answer-cmp v-for="(item, index) in itemData.answers"
@@ -86,6 +87,11 @@ export default class QuoraCmp extends Vue {
 
   @QuoraStore.Action addNewAnswerStore!:
     ({ qId, item }: { qId: string, item: AnswerItem }) => void;
+
+  get et(): Object {
+    debugger;
+    return this.editedItem;
+  }
 
   editedItemHandle({ id, text }: { id: string, text: string }) {
     debugger;

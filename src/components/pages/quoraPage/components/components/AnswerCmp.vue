@@ -4,7 +4,7 @@
       <card-header
         :index="index"
         :itemData="itemData"
-        :editedItem="editedItem" :editedItemRef="editedItemHandle"
+        :editedItemHeader="editedItem" :editedItemRef="editedItemHandle"
         :qId="qId"
         ref="cardHeader"
       />
@@ -13,7 +13,7 @@
       <p class="card-text text-left">
         <card-body-text
           :itemData="itemData"
-          :editedItem="editedItem"
+          :editedItemBody="editedItem"
           :saveItemRef="saveItemHandle"
         />
       </p>
