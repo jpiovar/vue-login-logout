@@ -10,10 +10,12 @@
     </div>
     <div class="card-body bg-light text-dark">
       <p class="card-text text-left">
-        <span>{{ et.text }}</span>
+        <span>{{ et.text }} / {{ ed }}</span>
         <card-body-text
           :itemData="itemData"
           :editedItemBody="editedItem"
+          :edBody="ed"
+          :edRef="edRefHandle"
           :saveItemRef="saveItemHandle"
         />
         <answer-cmp v-for="(item, index) in itemData.answers"
@@ -83,6 +85,8 @@ export default class QuoraCmp extends Vue {
 
   editedItem = { id: '', text: '' };
 
+  ed: string = 'aaaa';
+
   @UserStore.Getter userData!: UserData;
 
   @QuoraStore.Action addNewAnswerStore!:
@@ -91,6 +95,10 @@ export default class QuoraCmp extends Vue {
   get et(): Object {
     debugger;
     return this.editedItem;
+  }
+
+  edRefHandle(val: string) {
+    this.ed = val;
   }
 
   editedItemHandle({ id, text }: { id: string, text: string }) {

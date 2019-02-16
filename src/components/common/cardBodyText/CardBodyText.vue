@@ -10,6 +10,12 @@
         class="form-control"
         aria-label="textarea" rows="1">
       </textarea>
+      <textarea
+        v-model="edBody"
+        class="form-control"
+        aria-label="textarea" rows="1">
+      </textarea>
+      <span>{{ edBodyG }}</span>
     </span>
   </div>
 </template>
@@ -37,6 +43,14 @@ const ModeStore = namespace(MODE);
       required: true,
       type: Object,
     },
+    edBody: {
+      required: false,
+      type: String,
+    },
+    edRef: {
+      required: false,
+      type: Function,
+    },
     saveItemRef: {
       required: true,
       type: Function,
@@ -50,6 +64,10 @@ export default class CardBodyText extends Vue {
 
   editedItemBody!: { id: string, text: string };
 
+  edBody!: string;
+
+  edRef!: any;
+
   @ModeStore.Getter modeStatus!: AppMode;
 
   @ModeStore.Getter modeReference!: Reference;
@@ -57,6 +75,11 @@ export default class CardBodyText extends Vue {
   get isEditIncomplete(): boolean {
     return (this.modeStatus === MODE_EDIT || this.modeStatus === MODE_INCOMPLETE)
       && this.modeReference.id === this.itemData.id;
+  }
+
+  get edBodyG(): string {
+    this.edRef(this.edBody);
+    return this.edBody;
   }
 
   saveItem() {
