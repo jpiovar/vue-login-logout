@@ -126,15 +126,15 @@ export default class CardHeader extends Vue {
   editedIdCoveredByRemovedId(itemId: string, referenceId: string): boolean {
     debugger;
     let res = false;
-    if (this.itemData && this.itemData.answers) {
+    if (itemId === referenceId) {
+      res = true;
+    } else if (this.itemData && this.itemData.answers) {
       for (let i = 0; i < this.itemData.answers.length; i++) {
         if (this.itemData.answers[i].id === referenceId) {
           res = true;
           break;
         }
       }
-    } else if (itemId === referenceId) {
-      res = true;
     }
     return res;
   }
