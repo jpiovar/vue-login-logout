@@ -3,12 +3,11 @@
   <div class="card shadow p-3 mb-5 bg-white rounded">
     <div class="card-body">
       <h4 class="card-title text-center">Simple Quora Login</h4>
-      <form>
+      <form @submit.prevent="loginForm">
         <div class="form-group">
           <label for="userName">User name</label>
           <input type="text"
             v-model="userNameVal"
-            @keydown.enter.prevent="loginForm"
             ref="userName" class="form-control" id="userName"
             aria-describedby="userNameHelp" placeholder="Type user name">
         </div>
@@ -16,11 +15,9 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password"
             v-model="passwordVal"
-            @keydown.enter.prevent="loginForm"
             class="form-control" id="exampleInputPassword1" placeholder="Type password">
         </div>
         <button type="submit" class="btn btn-primary"
-          @click.prevent="loginForm"
           @keydown.tab.prevent="setFocus">Login
         </button>
       </form>
