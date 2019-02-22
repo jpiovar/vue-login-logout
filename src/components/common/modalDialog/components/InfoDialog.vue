@@ -59,7 +59,6 @@ export default class InfoDialog extends Vue {
   @ModeStore.Getter modeReference!: Reference;
 
   hideModal() {
-    debugger;
     this.showModalRef();
   }
 }

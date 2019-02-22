@@ -27,7 +27,6 @@ export default class ModalDialog extends Vue {
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
 
   showModalHandle() {
-    debugger;
     if (this.modeStatus === MODE_INCOMPLETE) {
       const status = MODE_EDIT;
       const reference = { id: this.modeReference.id, text: this.modeReference.text };
@@ -45,12 +44,10 @@ export default class ModalDialog extends Vue {
   }
 
   get appModeStatus(): string {
-    debugger;
     return `${this.modeStatus} ooo`;
   }
 
   get showModal(): boolean {
-    debugger;
     return this.modeStatus === MODE_INCOMPLETE;
   }
 }

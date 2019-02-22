@@ -3,7 +3,6 @@ import { ModeStore, AppMode, Reference } from './mode.types';
 
 const mutations: MutationTree<ModeStore> = {
   setMode(state: ModeStore, { reference, status }: { reference: Reference, status: AppMode }) {
-    debugger;
     const newState: ModeStore = {
       reference,
       status,

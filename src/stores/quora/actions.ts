@@ -15,14 +15,12 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   addNewQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { item }: { item: QuoraItem }) {
-    debugger;
     const data: QuoraItem[] = state.quoraItems;
     data.push(item);
     commit('storeQuoraData', data);
   },
   removeQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { itemId }: { itemId: string }) {
-    debugger;
     let qIndex = 0;
     const data: QuoraItem[] = state.quoraItems;
     for (let i = 0; i < data.length; i++) {
@@ -36,7 +34,6 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   updateQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string}) {
-    debugger;
     const data: QuoraItem[] = state.quoraItems;
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {
@@ -49,7 +46,6 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   addNewAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, item }: { qId: string, item: QuoraItem }) {
-    debugger;
     const data: QuoraItem[] = state.quoraItems;
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === qId) {
@@ -61,7 +57,6 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   removeAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { itemId, qId }: { itemId: string, qId: string }) {
-    debugger;
     const data: QuoraItem[] = state.quoraItems;
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {
@@ -80,7 +75,6 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   updateAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { aId, text, qId }: { aId: string, text: string, qId: string }) {
-    debugger;
     const data: QuoraItem[] = state.quoraItems;
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {

@@ -105,7 +105,6 @@ export default class CardHeader extends Vue {
   @ModeStore.Getter modeReference!: Reference;
 
   get timeStamp(): string {
-    debugger;
     const date = new Date(Number(this.itemData.id));
     const dVal = {
       year: date.getFullYear(),
@@ -124,7 +123,6 @@ export default class CardHeader extends Vue {
   }
 
   editedIdCoveredByRemovedId(itemId: string, referenceId: string): boolean {
-    debugger;
     let res = false;
     if (itemId === referenceId) {
       res = true;
@@ -140,7 +138,6 @@ export default class CardHeader extends Vue {
   }
 
   removeItem(itemId: string, qId: string) {
-    debugger;
     if (qId) {
       this.removeAnswerStore({ itemId, qId });
     } else {
@@ -154,7 +151,6 @@ export default class CardHeader extends Vue {
   }
 
   editItem(item: QuoraItem|AnswerItem) {
-    debugger;
     let status = MODE_EDIT;
     let reference = { id: item.id, text: item.text };
     if (this.modeStatus === MODE_INITIAL || this.modeStatus === MODE_READ) {
@@ -169,7 +165,6 @@ export default class CardHeader extends Vue {
   }
 
   saveItem() {
-    debugger;
     const status = MODE_READ;
     const reference = { id: '', text: '' };
     this.setMode({ reference, status });
@@ -183,7 +178,6 @@ export default class CardHeader extends Vue {
   }
 
   cancelItem() {
-    debugger;
     const status = MODE_READ;
     const reference = { id: '', text: '' };
     this.setMode({ reference, status });

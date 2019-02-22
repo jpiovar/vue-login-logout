@@ -88,12 +88,10 @@ export default class QuoraCmp extends Vue {
     ({ qId, item }: { qId: string, item: AnswerItem }) => void;
 
   editedItemHandle({ id, text }: { id: string, text: string }) {
-    debugger;
     this.editedItem = { id, text };
   }
 
   addNewAnswer(qId: string) {
-    debugger;
     if (this.newAnswerVal.trim()) {
       const item = {
         id: `${Date.now()}`,

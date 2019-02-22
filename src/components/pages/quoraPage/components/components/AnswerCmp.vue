@@ -55,7 +55,6 @@ export default class AnswerCmp extends Vue {
   editedItem = { id: '', text: '' };
 
   editedItemHandle({ id, text }: { id: string, text: string }) {
-    debugger;
     this.editedItem = { id, text };
   }
 

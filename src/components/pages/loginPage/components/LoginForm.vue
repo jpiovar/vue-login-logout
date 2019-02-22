@@ -84,12 +84,10 @@ export default class LoginForm extends Vue {
   }
 
   get userNameValGS(): string {
-    debugger;
     return this.userNameVal;
   }
 
   set userNameValGS(val: string) {
-    debugger;
     this.userNameVal = val;
   }
 }
