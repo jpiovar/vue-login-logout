@@ -35,23 +35,22 @@ const QuoraStore = namespace(QUORA);
 export default class LoginPage extends Vue {
   msg!: string;
 
-  @UserStore.Action loginUser!: ({ id, name, email }: UserData) => void;
+  @UserStore.Action loginUser!: ({ name, password }: { name: string, password: string }) => Promise<boolean>;
 
   @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
 
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');
-    const up = userProfiles.filter(item => item.name === userAuth.name
-      && item.password === userAuth.password);
-    if (up && up.length > 0) {
-      this.loginUser({ id: up[0].id, name: up[0].name, email: up[0].email });
-      this.storeQuoraData(quoraContent);
-    } else {
-      (this.$refs.loginForm as HTMLFormElement).showAlertBannerAndReset();
-    }
-    // axios
-    //   .get('/src/assets/userData.json')
-    //   .then(response => this.loginUser());
+    this.loginUser({ name: userAuth.name, password: userAuth.password })
+      .then((response) => {
+        if (response) {
+          this.storeQuoraData(quoraContent);
+        } else {
+          (this.$refs.loginForm as HTMLFormElement).showAlertBannerAndReset();
+        }
+      }).catch((error) => {
+        console.log('loginHandle error ', error);
+      });
   }
 }
 
