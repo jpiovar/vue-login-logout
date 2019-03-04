@@ -1,11 +1,12 @@
 import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
 import { QuoraStore, QuoraItem, AnswerItem } from './quora.types';
+import { quoraContent } from '../../assets/data';
 
 const actions: ActionTree<QuoraStore, RootState> = {
   storeQuoraData({ commit }:
-    ActionContext<QuoraStore, RootState>, data: QuoraItem[]) {
-    commit('storeQuoraData', data);
+    ActionContext<QuoraStore, RootState>) {
+    commit('storeQuoraData', quoraContent);
   },
   destroyQuoraData({ commit }:
     ActionContext<QuoraStore, RootState>) {

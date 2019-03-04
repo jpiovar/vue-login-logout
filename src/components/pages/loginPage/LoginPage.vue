@@ -37,14 +37,14 @@ export default class LoginPage extends Vue {
 
   @UserStore.Action loginUser!: ({ name, password }: { name: string, password: string }) => Promise<boolean>;
 
-  @QuoraStore.Action storeQuoraData!: (param: QuoraItem[]) => void;
+  @QuoraStore.Action storeQuoraData!: () => void;
 
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');
     this.loginUser({ name: userAuth.name, password: userAuth.password })
       .then((response) => {
         if (response) {
-          this.storeQuoraData(quoraContent);
+          this.storeQuoraData();
         } else {
           (this.$refs.loginForm as HTMLFormElement).showAlertBannerAndReset();
         }
