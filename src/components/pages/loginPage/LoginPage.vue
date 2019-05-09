@@ -3,6 +3,9 @@
   <div class="row align-items-center justify-content-center">
     <div class="col-md-5">
       <LoginForm :loginRef="loginHandle" ref="loginForm"/>
+      <button type="button" class="btn btn-primary"
+        @click="callNode">Call node
+      </button>
     </div>
   </div>
 </div>
@@ -51,6 +54,24 @@ export default class LoginPage extends Vue {
       }).catch((error) => {
         console.log('loginHandle error ', error);
       });
+  }
+
+  callNode() {
+    /* eslint-disable */
+    debugger;
+    const protocol = 'http';
+    const hostname = 'localhost';
+    const port = '3030';
+    const endpoint = 'orders';
+    const formedURL = `${protocol}://${hostname}:${port}/${endpoint}`;
+    axios({
+        url: formedURL,
+        headers: {}
+    }).then(response => {
+        console.log('response', response);
+    }, error => {
+        console.log('error ', error);
+    });
   }
 }
 
