@@ -22,7 +22,7 @@
         </button>
       </form>
       <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if='showAlert'>
-        Please use valid credentials.
+        Please use valid credentials.<br/> janko/janko or hrasko/hrasko 
         <button type="button" class="close" ref="alertBtn" aria-label="Close"
           @click.prevent="hideAlertBanner"
           @keydown.tab.prevent="setFocusInput">
