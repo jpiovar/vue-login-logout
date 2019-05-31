@@ -3,9 +3,9 @@
   <div class="row align-items-center justify-content-center">
     <div class="col-md-5">
       <LoginForm :loginRef="loginHandle" ref="loginForm"/>
-      <button type="button" class="btn btn-primary"
+      <!-- <button type="button" class="btn btn-primary"
         @click="callNode">Call node
-      </button>
+      </button> -->
     </div>
   </div>
 </div>
