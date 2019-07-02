@@ -9,6 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "postinstall": "npm run build",
+    "test:all": "npm run test:unit -- --verbose",
     "start": "node server.js"
   },
   "dependencies": {
