@@ -1,8 +1,12 @@
 import { shallowMount, Wrapper } from '@vue/test-utils';
 import LoginForm from '@/components/pages/loginPage/components/LoginForm.vue';
+// import Vue from 'vue';
+
+// const Constructor = Vue.extend(LoginForm);
+// const vm = new Constructor().$mount();
 
 const props = {
-    loginRef() {},
+    loginRef() { },
 };
 
 const getWrapper = (propsData = props): Wrapper<LoginForm> => shallowMount(LoginForm, {
@@ -12,6 +16,10 @@ const getWrapper = (propsData = props): Wrapper<LoginForm> => shallowMount(Login
 });
 
 describe('LoginForm.vue', () => {
+    it('should match the snapshot', () => {
+        const wrapper: Wrapper<LoginForm> = getWrapper();
+        expect(wrapper.vm.$el).toMatchSnapshot()
+    });
     it('renders input id userName', () => {
         const wrapper: Wrapper<LoginForm> = getWrapper();
         const inputField = wrapper.find('input#userName');
