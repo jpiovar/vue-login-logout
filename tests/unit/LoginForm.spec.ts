@@ -9,7 +9,7 @@ const props = {
     loginRef() { },
 };
 
-const getWrapper = (propsData = props): Wrapper<LoginForm> => shallowMount(LoginForm, {
+const getWrapperShallow = (propsData = props): Wrapper<LoginForm> => shallowMount(LoginForm, {
     propsData: {
         ...propsData
     },
@@ -17,17 +17,17 @@ const getWrapper = (propsData = props): Wrapper<LoginForm> => shallowMount(Login
 
 describe('LoginForm.vue', () => {
     it('should match the snapshot', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapper();
+        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
     it('renders input id userName', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapper();
+        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         const inputField = wrapper.find('input#userName');
         expect(inputField.exists()).toBe(true);
         expect(inputField.isVisible()).toBe(true);
     });
     it('renders input id exampleInputPassword1', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapper();
+        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         const inputField = wrapper.find('input#exampleInputPassword1');
         expect(inputField.exists()).toBe(true);
         expect(inputField.isVisible()).toBe(true);

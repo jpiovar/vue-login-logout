@@ -1,8 +1,9 @@
 <template>
-<div class="container">
+<div class="container" :id="idComponent">
   <div class="row align-items-center justify-content-center">
     <div class="col-md-5">
       <LoginForm :loginRef="loginHandle" ref="loginForm"/>
+      <span id="footer">{{author}} @ {{year}}</span>
     </div>
   </div>
 </div>
@@ -30,10 +31,18 @@ const QuoraStore = namespace(QUORA);
       required: false,
       type: String,
     },
+    author: {
+      required: true,
+      type: String,
+    },
   },
 })
 export default class LoginPage extends Vue {
+  idComponent: string = 'loginPage';
+
   msg!: string;
+
+  year: string = '2019';
 
   @UserStore.Action loginUser!: ({ name, password }: { name: string, password: string }) => Promise<boolean>;
 

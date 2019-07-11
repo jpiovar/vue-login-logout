@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage.vue should match the snapshot 1`] = `
+<div
+  class="container"
+  id="loginPage"
+>
+  <div
+    class="row align-items-center justify-content-center"
+  >
+    <div
+      class="col-md-5"
+    >
+      <loginform-stub
+        loginref="function () { [native code] }"
+      />
+       
+      <span
+        id="footer"
+      >
+        Juraj Piovar @ 2019
+      </span>
+    </div>
+  </div>
+</div>
+`;
