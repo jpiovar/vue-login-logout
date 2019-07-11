@@ -1,10 +1,7 @@
 
 [![Build Status](https://travis-ci.org/jpiovar/vue-heroku.svg?branch=master)](https://travis-ci.org/jpiovar/vue-heroku)
-
 ![GitHub top language](https://img.shields.io/github/languages/top/jpiovar/vue-heroku.svg)
-
 ![GitHub language count](https://img.shields.io/github/languages/count/jpiovar/vue-heroku.svg)
-
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/jpiovar/vue-heroku/master.svg)
 
 
