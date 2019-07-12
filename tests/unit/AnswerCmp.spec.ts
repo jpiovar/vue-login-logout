@@ -3,7 +3,7 @@ import AnswerCmp from '@/components/pages/quoraPage/components/components/Answer
 
 const props = {
     index: 12,
-    itemData: {},
+    itemData: {id: 'a12'},
     qId: 'q12'
 };
 
@@ -29,5 +29,9 @@ describe('AnswerCmp.vue', () => {
         const cardBody = wrapper.find('.card-body');
         expect(cardBody.exists()).toBe(true);
         expect(cardBody.isVisible()).toBe(true);
+    });
+    it('renders component id with correct string', () => {
+        const wrapper: Wrapper<AnswerCmp> = getWrapperShallow();
+        expect(wrapper.attributes().id).toBe('a12');
     });
 });
