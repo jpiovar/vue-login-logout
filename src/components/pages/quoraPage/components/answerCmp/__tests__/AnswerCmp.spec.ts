@@ -1,5 +1,5 @@
 import { shallowMount, Wrapper } from '@vue/test-utils';
-import AnswerCmp from '@/components/pages/quoraPage/components/components/AnswerCmp.vue';
+import AnswerCmp from '../AnswerCmp.vue';
 
 const props = {
     index: 12,

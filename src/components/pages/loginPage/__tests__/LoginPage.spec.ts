@@ -1,5 +1,5 @@
 import { shallowMount, mount, Wrapper, createLocalVue } from '@vue/test-utils';
-import LoginPage from '@/components/pages/loginPage/LoginPage.vue';
+import LoginPage from '../LoginPage.vue';
 import Vuex from 'vuex';
 
 const localVue = createLocalVue();

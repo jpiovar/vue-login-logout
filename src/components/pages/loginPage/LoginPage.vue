@@ -14,7 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import axios, { AxiosResponse } from 'axios';
 import { USER, QUORA } from '../../../stores/constants';
-import LoginForm from './components/LoginForm.vue';
+import LoginForm from './components/loginForm/LoginForm.vue';
 import { userProfiles, quoraContent } from '../../../assets/data';
 import { UserData } from '@/stores/user/user.types';
 import { QuoraItem } from '@/stores/quora/quora.types';

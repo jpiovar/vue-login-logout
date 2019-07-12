@@ -48,12 +48,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import { QUORA, USER } from '../../../../stores/constants';
-import { UserData } from '../../../../stores/user/user.types';
-import AnswerCmp from './components/AnswerCmp.vue';
-import { QuoraItem, AnswerItem } from '../../../../stores/quora/quora.types';
-import CardHeader from '../../../common/cardHeader/CardHeader.vue';
-import CardBodyText from '../../../common/cardBodyText/CardBodyText.vue';
+import { QUORA, USER } from '../../../../../stores/constants';
+import { UserData } from '../../../../../stores/user/user.types';
+import AnswerCmp from '../../components/answerCmp/AnswerCmp.vue';
+import { QuoraItem, AnswerItem } from '../../../../../stores/quora/quora.types';
+import CardHeader from '../../../../common/cardHeader/CardHeader.vue';
+import CardBodyText from '../../../../common/cardBodyText/CardBodyText.vue';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);

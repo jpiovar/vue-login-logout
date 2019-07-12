@@ -1,5 +1,5 @@
 import { shallowMount, mount, Wrapper } from '@vue/test-utils';
-import LoginForm from '@/components/pages/loginPage/components/LoginForm.vue';
+import LoginForm from '@/components/pages/loginPage/components/loginForm/LoginForm.vue';
 import Vue from 'vue';
 
 // const Constructor = Vue.extend(LoginForm);
