@@ -1,6 +1,7 @@
 import { shallowMount, mount, Wrapper, createLocalVue } from '@vue/test-utils';
 import LoginPage from '../LoginPage.vue';
 import Vuex from 'vuex';
+import sinon from 'sinon';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -69,4 +70,27 @@ describe('LoginPage.vue', () => {
         
     //     expect(wrapper.vm.loginHandle).toHaveBeenCalled();
     // });
+    it('find btn#ok', async() => {
+        // const wrapper: any = getWrapperShallow();
+
+        // let mockedNotify = jest.fn();
+        const wrapper:any = shallowMount(LoginPage, {
+            propsData: { author: 'Juraj Piovar'},
+            // methods: { okcall: mockedNotify },
+        });
+        // const oo = spyOn(wrapper.vm, 'okcall').and.callThrough();
+        // spyOn(wrapper.vm, 'okcall').and.callThrough();
+        let spy:any = spyOn(wrapper.vm, 'okcall');
+
+        expect(wrapper.vm.ok).toBe('');
+        const okbtn = await wrapper.find('button#ok');
+        await okbtn.trigger('click');
+        expect(wrapper.vm.ok).toBe('ok');
+        // expect(wrapper.vm.okcall).toBeCalled();
+
+        // await expect(spy).toHaveBeenCalled();
+
+        // expect(mockedNotify).toHaveBeenCalled();
+        
+    });
 });

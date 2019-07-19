@@ -28,6 +28,7 @@
           @keydown.tab.prevent="setFocusInput">
           <span aria-hidden="true">&times;</span>
         </button>
+        <button id="btnok" @click="loginForm">ok</button>
       </div>
     </div>
   </div>
@@ -55,7 +56,10 @@ export default class LoginForm extends Vue {
 
   showAlert: boolean = false;
 
+  lf: string = '';
+
   loginForm() {
+    this.lf = 'ok';
     this.loginRef({ name: this.userNameVal, password: this.passwordVal });
     // this.userNameValGS = `name ${this.userNameValGS}` ;
   }

@@ -20,6 +20,12 @@ exports[`LoginPage.vue should match the snapshot 1`] = `
       >
         Juraj Piovar @ 2019
       </span>
+       
+      <button
+        id="ok"
+      >
+        ok
+      </button>
     </div>
   </div>
 </div>

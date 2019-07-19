@@ -44,4 +44,15 @@ describe('LoginForm.vue', () => {
         wrapper.find("form").trigger("submit.prevent");
         expect(wrapper.vm.loginForm).toHaveBeenCalled();
     });
+    // it('calls method loginForm after form submit button clicked', () => {
+    //     // const wrapper: any = getWrapperMount();
+    //     const wrapper: any = mount(LoginForm, {
+    //         propsData: {
+    //             loginRef() { },
+    //         }
+    //       })
+    //     expect(wrapper.vm.lf).toBe('');
+    //     wrapper.find("#btnok").trigger("click");
+    //     // expect(wrapper.vm.lf).toBe('ok');
+    // });
 });

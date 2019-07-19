@@ -4,6 +4,7 @@
     <div class="col-md-5">
       <LoginForm :loginRef="loginHandle" ref="loginForm"/>
       <span id="footer">{{author}} @ {{year}}</span>
+      <button id="ok" @click="okcall">ok</button>
     </div>
   </div>
 </div>
@@ -42,11 +43,18 @@ export default class LoginPage extends Vue {
 
   msg!: string;
 
+  ok: string = '';
+
   year: string = '2019';
 
   @UserStore.Action loginUser!: ({ name, password }: { name: string, password: string }) => Promise<boolean>;
 
   @QuoraStore.Action storeQuoraData!: () => void;
+
+  okcall() {
+    console.log('ok');
+    this.ok = 'ok';
+  }
 
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');
