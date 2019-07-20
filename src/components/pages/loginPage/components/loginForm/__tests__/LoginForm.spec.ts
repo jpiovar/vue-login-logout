@@ -38,21 +38,32 @@ describe('LoginForm.vue', () => {
         expect(inputField.exists()).toBe(true);
         expect(inputField.isVisible()).toBe(true);
     });
-    it('calls method loginForm after form submit done', () => {
+    it('calls method loginFormM after form submit done', () => {
         const wrapper: any = getWrapperShallow();
-        spyOn(wrapper.vm, 'loginForm');
+        spyOn(wrapper.vm, 'loginFormM');
         wrapper.find("form").trigger("submit.prevent");
-        expect(wrapper.vm.loginForm).toHaveBeenCalled();
+        expect(wrapper.vm.loginFormM).toHaveBeenCalled();
     });
-    // it('calls method loginForm after form submit button clicked', () => {
-    //     // const wrapper: any = getWrapperMount();
-    //     const wrapper: any = mount(LoginForm, {
-    //         propsData: {
-    //             loginRef() { },
-    //         }
-    //       })
-    //     expect(wrapper.vm.lf).toBe('');
-    //     wrapper.find("#btnok").trigger("click");
-    //     // expect(wrapper.vm.lf).toBe('ok');
-    // });
+    it('calls method loginFormM after form submit button clicked', () => {
+        // const wrapper: any = getWrapperShallow();
+        const wrapper: any = shallowMount(LoginForm, {
+            propsData: {
+                loginRef() { },
+            },
+            attachToDocument: true
+        });
+
+        // create a spy on the instance method
+        const spyLoginFormM = jest.spyOn(wrapper.vm, 'loginFormM');
+        // replace the instance method with the spy
+        wrapper.setMethods({ loginFormM: spyLoginFormM });
+
+        expect(wrapper.vm.lf).toBe('');
+        wrapper.find('form button[type="submit"]').trigger('click');
+        expect(wrapper.vm.lf).toBe('ok');
+        expect(wrapper.vm.loginFormM).toHaveBeenCalled();
+
+        // remove the spy
+        spyLoginFormM.mockReset();
+    });
 });
