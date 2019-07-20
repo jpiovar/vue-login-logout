@@ -32,25 +32,30 @@ const getWrapperMount = (propsData = props): Wrapper<LoginPage> => mount(LoginPa
     stubs: ['LoginForm']
 });
 
+let wrapper: any;
+
 describe('LoginPage.vue', () => {
+    beforeEach(() => {
+        wrapper = getWrapperShallow();
+    });
     it('should match the snapshot', () => {
-        const wrapper: Wrapper<LoginPage> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginPage> = getWrapperShallow();
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
     it('renders footer exists and visible', () => {
-        const wrapper: Wrapper<LoginPage> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginPage> = getWrapperShallow();
         const spanFooter = wrapper.find('span#footer');
         expect(spanFooter.exists()).toBe(true);
         expect(spanFooter.isVisible()).toBe(true);
     });
     it('renders footer with correct text', () => {
-        const wrapper: Wrapper<LoginPage> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginPage> = getWrapperShallow();
         const spanFooter = wrapper.find('span#footer');
         const year = '2019';
         expect(spanFooter.text()).toBe(`${props.author} @ ${year}`);
     });
     it('renders component id and footer with correct text', () => {
-        const wrapper: Wrapper<LoginPage> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginPage> = getWrapperShallow();
         const mockData = { 'idComponent': 'loginPageIdComponent', 'year': '07/2019' };
         wrapper.setData(mockData); // sets component's data/instance attributes id, year with mock values
         const spanFooter = wrapper.find('span#footer');
@@ -70,27 +75,28 @@ describe('LoginPage.vue', () => {
         
     //     expect(wrapper.vm.loginHandle).toHaveBeenCalled();
     // });
-    it('find btn#ok', async() => {
+    it('find btn#ok, set instance property ok and call okcall method', () => {
         // const wrapper: any = getWrapperShallow();
 
-        // let mockedNotify = jest.fn();
-        const wrapper:any = shallowMount(LoginPage, {
-            propsData: { author: 'Juraj Piovar'},
-            // methods: { okcall: mockedNotify },
-        });
-        // const oo = spyOn(wrapper.vm, 'okcall').and.callThrough();
-        // spyOn(wrapper.vm, 'okcall').and.callThrough();
-        let spy:any = spyOn(wrapper.vm, 'okcall');
+        // create a spy on the instance method
+        const spyOkcall = jest.spyOn(wrapper.vm, 'okcall');
 
+        // replace the instance method with the spy
+        wrapper.setMethods({ okcall: spyOkcall });
+
+        
         expect(wrapper.vm.ok).toBe('');
-        const okbtn = await wrapper.find('button#ok');
-        await okbtn.trigger('click');
+        
+        wrapper.find('button#ok').trigger('click');
+
+        // verify the spy was called
+        expect(wrapper.vm.okcall).toHaveBeenCalled();    //  ekvivalent expect(spyOkcall).toHaveBeenCalled();
+
         expect(wrapper.vm.ok).toBe('ok');
-        // expect(wrapper.vm.okcall).toBeCalled();
+        
 
-        // await expect(spy).toHaveBeenCalled();
-
-        // expect(mockedNotify).toHaveBeenCalled();
+        // remove the spy
+        spyOkcall.mockReset();
         
     });
 });
