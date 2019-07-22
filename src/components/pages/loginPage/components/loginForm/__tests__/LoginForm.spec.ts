@@ -40,9 +40,13 @@ describe('LoginForm.vue', () => {
     });
     it('calls method loginFormM after form submit done', () => {
         const wrapper: any = getWrapperShallow();
-        spyOn(wrapper.vm, 'loginFormM');
+        // spyOn(wrapper.vm, 'loginFormM');
+        const spyLoginFormM = jest.spyOn(wrapper.vm, 'loginFormM');
+        wrapper.setMethods({ loginFormM: spyLoginFormM });
+        expect(wrapper.vm.lf).toBe('');
         wrapper.find("form").trigger("submit.prevent");
         expect(wrapper.vm.loginFormM).toHaveBeenCalled();
+        expect(wrapper.vm.lf).toBe('ok');
     });
     it('calls method loginFormM after form submit button clicked', () => {
         // const wrapper: any = getWrapperShallow();
