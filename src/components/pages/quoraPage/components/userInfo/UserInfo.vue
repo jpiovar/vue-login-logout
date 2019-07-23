@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow p-3 mb-5 bg-white rounded">
+  <div class="card shadow p-3 mb-5 bg-white rounded" :id="idComponent">
     <div class="card-body">
       <h5 class="card-title">User Info</h5>
       <p class="card-text text-left">
@@ -47,6 +47,8 @@ import { namespace } from 'vuex-class';
   },
 })
 export default class UserInfo extends Vue {
+  idComponent: string = 'userInfo';
+
   logoutRef!: any;
 
   msg!: string;
