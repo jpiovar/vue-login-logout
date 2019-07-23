@@ -6,9 +6,9 @@ module.exports = {
     browser
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
-      .assert.elementPresent('.hello')
-      .assert.containsText('h1', 'Welcome to Your Vue.js + TypeScript App')
-      .assert.elementCount('img', 1)
+      .assert.elementPresent('h4.card-title')
+      .assert.containsText('h4.card-title', 'Simple Quora Login')
+      .assert.elementCount('input.form-control', 2)
       .end();
   },
 };
