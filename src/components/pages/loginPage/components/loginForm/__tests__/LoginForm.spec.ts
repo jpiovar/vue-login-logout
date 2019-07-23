@@ -30,13 +30,11 @@ describe('LoginForm.vue', () => {
     it('should match the snapshot', () => {
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
-    it('renders input id userName', () => {
-        const inputFieldUserNasme = wrapper.find('input#userName');
-        expect(inputFieldUserNasme.exists()).toBe(true);
-        expect(inputFieldUserNasme.isVisible()).toBe(true);
-    });
-    it('renders input id exampleInputPassword1', () => {
+    it('renders input id userName and id exampleInputPassword1', () => {
+        const inputFieldUserName = wrapper.find('input#userName');
         const inputFieldPassword = wrapper.find('input#exampleInputPassword1');
+        expect(inputFieldUserName.exists()).toBe(true);
+        expect(inputFieldUserName.isVisible()).toBe(true);
         expect(inputFieldPassword.exists()).toBe(true);
         expect(inputFieldPassword.isVisible()).toBe(true);
     });
