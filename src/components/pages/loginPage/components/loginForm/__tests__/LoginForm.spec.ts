@@ -21,30 +21,27 @@ const getWrapperMount = (propsData = props): Wrapper<LoginForm> => mount(LoginFo
     },
 });
 
-let wrapper: any;
+let wrapper: Wrapper<LoginForm>;
 
 describe('LoginForm.vue', () => {
     beforeEach(() => {
         wrapper = getWrapperShallow();
     });
     it('should match the snapshot', () => {
-        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
     it('renders input id userName', () => {
-        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
-        const inputField = wrapper.find('input#userName');
-        expect(inputField.exists()).toBe(true);
-        expect(inputField.isVisible()).toBe(true);
+        const inputFieldUserNasme = wrapper.find('input#userName');
+        expect(inputFieldUserNasme.exists()).toBe(true);
+        expect(inputFieldUserNasme.isVisible()).toBe(true);
     });
     it('renders input id exampleInputPassword1', () => {
-        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
-        const inputField = wrapper.find('input#exampleInputPassword1');
-        expect(inputField.exists()).toBe(true);
-        expect(inputField.isVisible()).toBe(true);
+        const inputFieldPassword = wrapper.find('input#exampleInputPassword1');
+        expect(inputFieldPassword.exists()).toBe(true);
+        expect(inputFieldPassword.isVisible()).toBe(true);
     });
     it('calls method loginFormM after form submit done', () => {
-        // const wrapper: any = getWrapperShallow();
+        const wrapper: any = getWrapperShallow();
         const spyLoginFormM = jest.spyOn(wrapper.vm, 'loginFormM');
         wrapper.setMethods({ loginFormM: spyLoginFormM });
         expect(wrapper.vm.lf).toBe('');
@@ -53,7 +50,6 @@ describe('LoginForm.vue', () => {
         expect(wrapper.vm.lf).toBe('ok');
     });
     it('calls method loginFormM after form submit button clicked', () => {
-        // const wrapper: any = getWrapperShallow();
         const wrapper: any = shallowMount(LoginForm, {
             propsData: {
                 loginRef() { },
