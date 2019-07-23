@@ -3,8 +3,15 @@ import { RootState } from '../types';
 import { QuoraStore, QuoraItem, AnswerItem } from './quora.types';
 import { quoraContent } from '../../assets/data';
 
-const qIndexM = (data: any, qId: string) => data.reduce((res: any, item: any, index: any) => {
+const qIndexM = (data: QuoraItem[], qId: string) => data.reduce((res: any, item: any, index: any) => {
   if (item.id === qId) {
+    return index;
+  }
+  return res;
+}, 0);
+
+const aIndexM = (data: QuoraItem[], qIndex: number, vId: string) => data[qIndex].answers.reduce((res, item, index) => {
+  if (item.id === vId) {
     return index;
   }
   return res;
@@ -74,12 +81,13 @@ const actions: ActionTree<QuoraStore, RootState> = {
     //   }
     //   return res;
     // }, 0);
-    const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
-      if (item.id === itemId) {
-        return index;
-      }
-      return res;
-    }, 0);
+    const aIndex: number = aIndexM(data, qIndex, itemId);
+    // data[qIndex].answers.reduce((res, item, index) => {
+    //   if (item.id === itemId) {
+    //     return index;
+    //   }
+    //   return res;
+    // }, 0);
     data[qIndex].answers.splice(aIndex, 1);
     commit('storeQuoraData', data);
   },
@@ -93,12 +101,13 @@ const actions: ActionTree<QuoraStore, RootState> = {
     //   }
     //   return res;
     // }, 0);
-    const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
-      if (item.id === aId) {
-        return index;
-      }
-      return res;
-    }, 0);
+    const aIndex: number = aIndexM(data, qIndex, aId);
+    // data[qIndex].answers.reduce((res, item, index) => {
+    //   if (item.id === aId) {
+    //     return index;
+    //   }
+    //   return res;
+    // }, 0);
     data[qIndex].answers[aIndex].text = text;
     commit('storeQuoraData', data);
   },
