@@ -59,12 +59,12 @@ export const quoraContent = [{
     {
       id: '1549307059000',
       author: hrasko,
-      text: 'nobody knows sense of life j',
+      text: 'nobody knows sense of life jj',
     },
     {
       id: '1549307077000',
       author: janko,
-      text: 'nobody knows sense of life h',
+      text: 'nobody knows sense of life hh',
     },
   ],
 }];
