@@ -54,7 +54,7 @@ export const quoraContent = [{
     {
       id: '1549307053000',
       author: janko,
-      text: 'nobody knows sense of life a',
+      text: 'nobody knows sense of life b',
     },
     {
       id: '1549307059000',
