@@ -32,7 +32,7 @@ const getWrapperMount = (propsData = props): Wrapper<LoginPage> => mount(LoginPa
     stubs: ['LoginForm']
 });
 
-let wrapper: any;
+let wrapper: Wrapper<LoginPage>;
 
 describe('LoginPage.vue', () => {
     beforeEach(() => {
@@ -62,21 +62,8 @@ describe('LoginPage.vue', () => {
         expect(wrapper.attributes().id).toBe('loginPageIdComponent'); // checks if component's DOM id is equal to value of set component's data/instance attribute id
         expect(spanFooter.text()).toBe(`${props.author} @ 07/2019`);
     });
-    // it('calls store action "loginUser" when login submit button "loginForm" is clicked and "loginHandle" called', () => {
-    //     const wrapper: any = mount(LoginPage, { propsData: { ...props}, store, localVue });
-    //     // spyOn(wrapper.vm, 'loginHandle');
-    //     // wrapper.find("form").trigger("submit.prevent");
-        
-
-    //     wrapper.vm.loginHandle({name: 'janko', password: 'janko'});
-    // //     // expect(actions.storeQuoraData).toHaveBeenCalled();
-    //     expect(actions.loginUser).toHaveBeenCalled();
-    //     // expect(wrapper.vm.loginHandle).toHaveBeenCalled();
-        
-    //     expect(wrapper.vm.loginHandle).toHaveBeenCalled();
-    // });
     it('find btn#ok, set instance property ok and call okcall method', () => {
-        // const wrapper: any = getWrapperShallow();
+        const wrapper: any = getWrapperShallow();
 
         // create a spy on the instance method
         const spyOkcall = jest.spyOn(wrapper.vm, 'okcall');
