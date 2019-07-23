@@ -3,7 +3,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/jpiovar/vue-heroku.svg)
 ![GitHub language count](https://img.shields.io/github/languages/count/jpiovar/vue-heroku.svg)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/jpiovar/vue-heroku/master.svg)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/5f60348e5601333fe7a4/maintainability)](https://codeclimate.com/github/jpiovar/vue-heroku/maintainability)
 
 # vue-heroku
 
