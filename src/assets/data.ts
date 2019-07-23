@@ -1,3 +1,13 @@
+const janko = {
+  id: 'j1',
+  name: 'janko',
+  email: 'janko@ok.ok',
+};
+const hrasko = {
+  id: 'h1',
+  name: 'hrasko',
+  email: 'hrasko@ok.ok',
+};
 export const userProfiles = [{
   id: 'j1',
   name: 'janko',
@@ -12,38 +22,22 @@ export const userProfiles = [{
 
 export const quoraContent = [{
   id: '1549306955000',
-  author: {
-    id: 'j1',
-    name: 'janko',
-    email: 'janko@ok.ok',
-  },
+  author: janko,
   text: 'sense of life',
   answers: [
     {
       id: '1549306984000',
-      author: {
-        id: 'j1',
-        name: 'janko',
-        email: 'janko@ok.ok',
-      },
+      author: janko,
       text: 'nobody knows sense of life a',
     },
     {
       id: '1549306999000',
-      author: {
-        id: 'j1',
-        name: 'janko',
-        email: 'janko@ok.ok',
-      },
+      author: janko,
       text: 'nobody knows sense of life j',
     },
     {
       id: '1549307024000',
-      author: {
-        id: 'h1',
-        name: 'hrasko',
-        email: 'hrasko@ok.ok',
-      },
+      author: hrasko,
       text: 'nobody knows sense of life h',
     },
   ],
@@ -59,29 +53,17 @@ export const quoraContent = [{
   answers: [
     {
       id: '1549307053000',
-      author: {
-        id: 'j1',
-        name: 'janko',
-        email: 'janko@ok.ok',
-      },
+      author: janko,
       text: 'nobody knows sense of life a',
     },
     {
       id: '1549307059000',
-      author: {
-        id: 'h1',
-        name: 'hrasko',
-        email: 'hrasko@ok.ok',
-      },
+      author: hrasko,
       text: 'nobody knows sense of life j',
     },
     {
       id: '1549307077000',
-      author: {
-        id: 'j1',
-        name: 'janko',
-        email: 'janko@ok.ok',
-      },
+      author: janko,
       text: 'nobody knows sense of life h',
     },
   ],
