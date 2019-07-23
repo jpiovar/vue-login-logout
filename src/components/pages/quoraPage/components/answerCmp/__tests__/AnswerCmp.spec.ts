@@ -23,20 +23,17 @@ describe('AnswerCmp.vue', () => {
         // const wrapper: Wrapper<AnswerCmp> = getWrapperShallow();
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
-    it('renders card-header', () => {
+    it('renders card-header and card-body', () => {
         // const wrapper: Wrapper<AnswerCmp> = getWrapperShallow();
         const cardHeader = wrapper.find('.card-header');
+        const cardBody = wrapper.find('.card-body');
         expect(cardHeader.exists()).toBe(true);
         expect(cardHeader.isVisible()).toBe(true);
-    });
-    it('renders card-body', () => {
-        // const wrapper: Wrapper<AnswerCmp> = getWrapperShallow();
-        const cardBody = wrapper.find('.card-body');
         expect(cardBody.exists()).toBe(true);
         expect(cardBody.isVisible()).toBe(true);
     });
     it('renders component id with correct string', () => {
         // const wrapper: Wrapper<AnswerCmp> = getWrapperShallow();
-        expect(wrapper.attributes().id).toBe('a12');
+        expect(wrapper.attributes().id).toBe(props.itemData.id);
     });
 });
