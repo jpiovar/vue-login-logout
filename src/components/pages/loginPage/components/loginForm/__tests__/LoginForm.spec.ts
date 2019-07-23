@@ -21,26 +21,30 @@ const getWrapperMount = (propsData = props): Wrapper<LoginForm> => mount(LoginFo
     },
 });
 
+let wrapper: any;
+
 describe('LoginForm.vue', () => {
+    beforeEach(() => {
+        wrapper = getWrapperShallow();
+    });
     it('should match the snapshot', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         expect(wrapper.vm.$el).toMatchSnapshot()
     });
     it('renders input id userName', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         const inputField = wrapper.find('input#userName');
         expect(inputField.exists()).toBe(true);
         expect(inputField.isVisible()).toBe(true);
     });
     it('renders input id exampleInputPassword1', () => {
-        const wrapper: Wrapper<LoginForm> = getWrapperShallow();
+        // const wrapper: Wrapper<LoginForm> = getWrapperShallow();
         const inputField = wrapper.find('input#exampleInputPassword1');
         expect(inputField.exists()).toBe(true);
         expect(inputField.isVisible()).toBe(true);
     });
     it('calls method loginFormM after form submit done', () => {
-        const wrapper: any = getWrapperShallow();
-        // spyOn(wrapper.vm, 'loginFormM');
+        // const wrapper: any = getWrapperShallow();
         const spyLoginFormM = jest.spyOn(wrapper.vm, 'loginFormM');
         wrapper.setMethods({ loginFormM: spyLoginFormM });
         expect(wrapper.vm.lf).toBe('');
