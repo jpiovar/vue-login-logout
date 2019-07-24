@@ -49,16 +49,16 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   updateQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string }) {
-    const data: QuoraItem[] = state.quoraItems;
-    const qIndex: number = qIndexM(data, qId);
+    const dataQ: QuoraItem[] = state.quoraItems;
+    const qIndex: number = qIndexM(dataQ, qId);
     // data.reduce((res, item, index) => {
     //   if (item.id === qId) {
     //     return index;
     //   }
     //   return res;
     // }, 0);
-    data[qIndex].text = text;
-    commit('storeQuoraData', data);
+    dataQ[qIndex].text = text;
+    commit('storeQuoraData', dataQ);
   },
   addNewAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, item }: { qId: string, item: QuoraItem }) {
