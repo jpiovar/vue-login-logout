@@ -6,7 +6,7 @@ const getters: GetterTree<QuoraStore, RootState> = {
   quoraItems(state: QuoraStore): QuoraItem[] {
     return state.quoraItems;
   },
-  quoraStatus(state: QuoraStore): QuoraStatus {
+  quoraStatus(state: QuoraStore): QuoraStatus | string {
     return state.quoraStatus;
   },
 };
