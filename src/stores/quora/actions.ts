@@ -3,20 +3,6 @@ import { RootState } from '../types';
 import { QuoraStore, QuoraItem, AnswerItem } from './quora.types';
 import { quoraContent } from '../../assets/data';
 
-const qIndexM = (data: QuoraItem[], qId: string) => data.reduce((res: any, item: any, index: any) => {
-  if (item.id === qId) {
-    return index;
-  }
-  return res;
-}, 0);
-
-const aIndexM = (data: QuoraItem[], qIndex: number, vId: string) => data[qIndex].answers.reduce((res, item, index) => {
-  if (item.id === vId) {
-    return index;
-  }
-  return res;
-}, 0);
-
 const actions: ActionTree<QuoraStore, RootState> = {
   storeQuoraData({ commit }:
     ActionContext<QuoraStore, RootState>) {
@@ -50,7 +36,6 @@ const actions: ActionTree<QuoraStore, RootState> = {
   updateQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string }) {
     const data: QuoraItem[] = state.quoraItems;
-    // const qIndex: number = qIndexM(data, qId);
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {
         return index;
@@ -74,14 +59,12 @@ const actions: ActionTree<QuoraStore, RootState> = {
   removeAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { itemId, qId }: { itemId: string, qId: string }) {
     const data: QuoraItem[] = state.quoraItems;
-    // const qIndex: number = qIndexM(data, qId);
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {
         return index;
       }
       return res;
     }, 0);
-    // const aIndex: number = aIndexM(data, qIndex, itemId);
     const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
       if (item.id === itemId) {
         return index;
@@ -94,14 +77,12 @@ const actions: ActionTree<QuoraStore, RootState> = {
   updateAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { aId, text, qId }: { aId: string, text: string, qId: string }) {
     const data: QuoraItem[] = state.quoraItems;
-    // const qIndex: number = qIndexM(data, qId);
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {
         return index;
       }
       return res;
     }, 0);
-    // const aIndex: number = aIndexM(data, qIndex, aId);
     const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
       if (item.id === aId) {
         return index;
