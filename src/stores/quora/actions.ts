@@ -49,16 +49,16 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   updateQuestionStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string }) {
-    const dataQ: QuoraItem[] = state.quoraItems;
-    const qIndex: number = qIndexM(dataQ, qId);
-    // data.reduce((res, item, index) => {
-    //   if (item.id === qId) {
-    //     return index;
-    //   }
-    //   return res;
-    // }, 0);
-    dataQ[qIndex].text = text;
-    commit('storeQuoraData', dataQ);
+    const data: QuoraItem[] = state.quoraItems;
+    // const qIndex: number = qIndexM(data, qId);
+    const qIndex: number = data.reduce((res, item, index) => {
+      if (item.id === qId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    data[qIndex].text = text;
+    commit('storeQuoraData', data);
   },
   addNewAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { qId, item }: { qId: string, item: QuoraItem }) {
@@ -73,43 +73,43 @@ const actions: ActionTree<QuoraStore, RootState> = {
   },
   removeAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { itemId, qId }: { itemId: string, qId: string }) {
-    const dataR: QuoraItem[] = state.quoraItems;
-    const qIndex: number = qIndexM(dataR, qId);
-    // data.reduce((res, item, index) => {
-    //   if (item.id === qId) {
-    //     return index;
-    //   }
-    //   return res;
-    // }, 0);
-    const aIndex: number = aIndexM(dataR, qIndex, itemId);
-    // data[qIndex].answers.reduce((res, item, index) => {
-    //   if (item.id === itemId) {
-    //     return index;
-    //   }
-    //   return res;
-    // }, 0);
-    dataR[qIndex].answers.splice(aIndex, 1);
-    commit('storeQuoraData', dataR);
+    const data: QuoraItem[] = state.quoraItems;
+    // const qIndex: number = qIndexM(data, qId);
+    const qIndex: number = data.reduce((res, item, index) => {
+      if (item.id === qId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    // const aIndex: number = aIndexM(data, qIndex, itemId);
+    const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
+      if (item.id === itemId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    data[qIndex].answers.splice(aIndex, 1);
+    commit('storeQuoraData', data);
   },
   updateAnswerStore({ commit, state }:
     ActionContext<QuoraStore, RootState>, { aId, text, qId }: { aId: string, text: string, qId: string }) {
-    const dataU: QuoraItem[] = state.quoraItems;
-    const qIndex: number = qIndexM(dataU, qId);
-    // data.reduce((res, item, index) => {
-    //   if (item.id === qId) {
-    //     return index;
-    //   }
-    //   return res;
-    // }, 0);
-    const aIndex: number = aIndexM(dataU, qIndex, aId);
-    // data[qIndex].answers.reduce((res, item, index) => {
-    //   if (item.id === aId) {
-    //     return index;
-    //   }
-    //   return res;
-    // }, 0);
-    dataU[qIndex].answers[aIndex].text = text;
-    commit('storeQuoraData', dataU);
+    const data: QuoraItem[] = state.quoraItems;
+    // const qIndex: number = qIndexM(data, qId);
+    const qIndex: number = data.reduce((res, item, index) => {
+      if (item.id === qId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    // const aIndex: number = aIndexM(data, qIndex, aId);
+    const aIndex: number = data[qIndex].answers.reduce((res, item, index) => {
+      if (item.id === aId) {
+        return index;
+      }
+      return res;
+    }, 0);
+    data[qIndex].answers[aIndex].text = text;
+    commit('storeQuoraData', data);
   },
 };
 
