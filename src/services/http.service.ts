@@ -34,7 +34,7 @@ export class HttpService {
    * @param body : post body content
    * @returns Promise<any>
   */
-  public post (endpoint: string, body:any): Promise<any> {
+  public post (endpoint: string, body: any): Promise<any> {
     return Vue.axios.post(`${this.formedURL}${endpoint}`, body)
   }
 }
