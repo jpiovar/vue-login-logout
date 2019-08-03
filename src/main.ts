@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import axios from 'axios';
+import VueAxios from 'vue-axios';
 import App from './App.vue';
 import store from './stores';
 import 'bootstrap';
@@ -8,7 +9,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$http = axios;
+Vue.use(VueAxios, axios);
 
 new Vue({
   store,

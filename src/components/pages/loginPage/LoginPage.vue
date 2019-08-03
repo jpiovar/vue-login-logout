@@ -16,7 +16,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
-import axios, { AxiosResponse } from 'axios';
+// import axios, { AxiosResponse } from 'axios';
+import { HttpService } from '../../../services/http.service';
 import { USER, QUORA } from '../../../stores/constants';
 import LoginForm from './components/loginForm/LoginForm.vue';
 import { userProfiles, quoraContent } from '../../../assets/data';
@@ -25,6 +26,8 @@ import { QuoraItem } from '@/stores/quora/quora.types';
 
 const UserStore = namespace(USER);
 const QuoraStore = namespace(QUORA);
+
+const httpService = new HttpService();
 
 @Component({
   components: {
@@ -76,19 +79,29 @@ export default class LoginPage extends Vue {
   callNode() {
     /* eslint-disable */
     debugger;
-    const protocol = 'http';
-    const hostname = 'localhost';
-    const port = '3030';
+    // const protocol = 'http';
+    // const hostname = 'localhost';
+    // const port = '3030';
     const endpoint = 'orders';
-    const formedURL = `${protocol}://${hostname}:${port}/${endpoint}`;
-    axios({
-        url: formedURL,
-        headers: {}
-    }).then(response => {
-        console.log('response', response);
+    httpService.get('orders').then(response => {
+      console.log('error ', response);
     }, error => {
-        console.log('error ', error);
+      console.log('error ', error);
     });
+    // const formedURL = `${protocol}://${hostname}:${port}/${endpoint}`;
+    // Vue.axios.get(formedURL).then(response => {
+    //   console.log('response', response);
+    // }, error => {
+    //   console.log('error ', error);
+    // });
+    // this.axios({
+    //     url: formedURL,
+    //     headers: {}
+    // }).then(response => {
+    //     console.log('response', response);
+    // }, error => {
+    //     console.log('error ', error);
+    // });
   }
 }
 
