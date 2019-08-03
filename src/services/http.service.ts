@@ -1,19 +1,19 @@
 import { Vue } from 'vue-property-decorator';
 
-// export class HttpMockService {
-//   getMockData () {
-//     return require('./../mocks/records.json')
-//   }
+export class HttpMockService {
+  getMockDataAllowedCredentials () {
+    return require('../mockData/allowedCredentials.json')
+  }
 
-//   get = (url:string) => {
-//     const mockData = this.getMockData()
-//     return new Promise((resolve) => {
-//       setTimeout(() => {
-//         resolve(mockData)
-//       }, 2000)
-//     })
-//   }
-// }
+  getMockDataAllowedCredentialsDelay = (url:string) => {
+    const mockData = this.getMockDataAllowedCredentials()
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(mockData)
+      }, 2000)
+    })
+  }
+}
 export class HttpService {
 //   serverURL = 'https://domain.com/api/orders';
     protocol = 'http';
