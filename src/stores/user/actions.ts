@@ -2,15 +2,19 @@ import { ActionTree, ActionContext } from 'vuex';
 import { RootState } from '../types';
 import { UserStore, UserData } from './user.types';
 import { userProfiles } from '../../assets/data';
-import { HttpMockService } from '../../services/http.service';
+import { HttpMockService, HttpService } from '../../services/http.service';
 
 const httpMockService = new HttpMockService();
+
+const httpService = new HttpService();
 
 const actions: ActionTree<UserStore, RootState> = {
   loginUser({ commit }: ActionContext<UserStore, RootState>, { name, password }: { name: string, password: string }): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      httpMockService.getMockDataAllowedCredentialsDelay().then((response) => {
-        const rr: any = response;
+      // httpMockService.getMockDataAllowedCredentialsDelay().then((response) => {
+        httpService.get('users').then((response) => {
+        // const rr: any = response;  // mock response
+        const rr = response.data; // server response
         const up = rr.filter((item: {name: string, password: string}) => item.name === name && item.password === password);
         if (up && up.length > 0) {
           commit('loginUser', { id: up[0].id, name: up[0].name, email: up[0].email });
