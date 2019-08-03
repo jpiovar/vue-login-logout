@@ -5,7 +5,7 @@ export class HttpMockService {
     return require('../mockData/allowedCredentials.json')
   }
 
-  getMockDataAllowedCredentialsDelay = (url:string) => {
+  getMockDataAllowedCredentialsDelay = () => {
     const mockData = this.getMockDataAllowedCredentials()
     return new Promise((resolve) => {
       setTimeout(() => {
