@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld :msg="temp.id"/> -->
-    <LoginPage v-if="applyLoginPage"/>
+    <LoginPage v-if="applyLoginPage" author ="Juraj Piovar"/>
     <QuoraPage v-if="applyQuoraPage"/>
   </div>
 </template>

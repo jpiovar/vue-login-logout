@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnswerCmp.vue should match the snapshot 1`] = `
+<div
+  class="card text-white bg-success p-1 mb-3"
+  id="a12"
+>
+  <div
+    class="card-header"
+  >
+    <card-header-stub
+      editeditemheader="[object Object]"
+      editeditemref="function () { [native code] }"
+      index="12"
+      itemdata="[object Object]"
+      qid="q12"
+    />
+  </div>
+   
+  <div
+    class="card-body bg-light text-dark"
+  >
+    <p
+      class="card-text text-left"
+    >
+      <card-body-text-stub
+        editeditembody="[object Object]"
+        itemdata="[object Object]"
+        saveitemref="function () { [native code] }"
+      />
+    </p>
+  </div>
+</div>
+`;

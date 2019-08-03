@@ -1,11 +1,13 @@
 <template>
-<div class="container">
+<div class="container" :id="idComponent">
   <div class="row align-items-center justify-content-center">
     <div class="col-md-5">
       <LoginForm :loginRef="loginHandle" ref="loginForm"/>
       <button type="button" class="btn btn-primary"
         @click="callNode">Call node
       </button>
+      <span id="footer">{{author}} @ {{year}}</span>
+      <button id="ok" @click="okcall">ok</button>
     </div>
   </div>
 </div>
@@ -16,7 +18,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 import axios, { AxiosResponse } from 'axios';
 import { USER, QUORA } from '../../../stores/constants';
-import LoginForm from './components/LoginForm.vue';
+import LoginForm from './components/loginForm/LoginForm.vue';
 import { userProfiles, quoraContent } from '../../../assets/data';
 import { UserData } from '@/stores/user/user.types';
 import { QuoraItem } from '@/stores/quora/quora.types';
@@ -33,14 +35,29 @@ const QuoraStore = namespace(QUORA);
       required: false,
       type: String,
     },
+    author: {
+      required: true,
+      type: String,
+    },
   },
 })
 export default class LoginPage extends Vue {
+  idComponent: string = 'loginPage';
+
   msg!: string;
+
+  ok: string = '';
+
+  year: string = '2019';
 
   @UserStore.Action loginUser!: ({ name, password }: { name: string, password: string }) => Promise<boolean>;
 
   @QuoraStore.Action storeQuoraData!: () => void;
+
+  okcall() {
+    console.log('ok');
+    this.ok = 'ok';
+  }
 
   loginHandle(userAuth: {name: string, password: string}) {
     console.log('login clicked');

@@ -34,7 +34,7 @@ const actions: ActionTree<QuoraStore, RootState> = {
     commit('storeQuoraData', data);
   },
   updateQuestionStore({ commit, state }:
-    ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string}) {
+    ActionContext<QuoraStore, RootState>, { qId, text }: { qId: string, text: string }) {
     const data: QuoraItem[] = state.quoraItems;
     const qIndex: number = data.reduce((res, item, index) => {
       if (item.id === qId) {

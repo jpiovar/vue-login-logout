@@ -46,8 +46,8 @@ import { USER, QUORA, MODE } from '../../../stores/constants';
 import { MODE_EDIT, MODE_READ } from '@/stores/mode/constants';
 import { UserData } from '../../../stores/user/user.types';
 import { QuoraItem } from '../../../stores/quora/quora.types';
-import QuoraCmp from './components/QuoraCmp.vue';
-import UserInfo from './components/UserInfo.vue';
+import QuoraCmp from './components/quoraCmp/QuoraCmp.vue';
+import UserInfo from './components/userInfo/UserInfo.vue';
 import ModalDialog from '../../common/modalDialog/ModalDialog.vue';
 import { AppMode, Reference } from '@/stores/mode/mode.types';
 

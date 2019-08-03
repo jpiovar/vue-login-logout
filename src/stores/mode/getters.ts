@@ -6,7 +6,7 @@ const getters: GetterTree<ModeStore, RootState> = {
   modeReference(state: ModeStore): Reference {
     return state.reference;
   },
-  modeStatus(state: ModeStore): AppMode {
+  modeStatus(state: ModeStore): AppMode | string {
     return state.status;
   },
 };

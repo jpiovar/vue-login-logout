@@ -3,7 +3,7 @@
   <div class="card shadow p-3 mb-5 bg-white rounded">
     <div class="card-body">
       <h4 class="card-title text-center">Simple Quora Login</h4>
-      <form @submit.prevent="loginForm">
+      <form @submit.prevent="loginFormM">
         <div class="form-group">
           <label for="userName">User name</label>
           <input type="text"
@@ -55,7 +55,10 @@ export default class LoginForm extends Vue {
 
   showAlert: boolean = false;
 
-  loginForm() {
+  lf: string = '';
+
+  loginFormM() {
+    this.lf = 'ok';
     this.loginRef({ name: this.userNameVal, password: this.passwordVal });
     // this.userNameValGS = `name ${this.userNameValGS}` ;
   }
