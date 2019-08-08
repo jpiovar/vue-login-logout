@@ -83,7 +83,7 @@ export default class LoginPage extends Vue {
     // const hostname = 'localhost';
     // const port = '3030';
     const endpoint = 'orders';
-    httpService.get('orders').then(response => {
+    httpService.get('orders', {}).then(response => {
       console.log('error ', response);
     }, error => {
       console.log('error ', error);
